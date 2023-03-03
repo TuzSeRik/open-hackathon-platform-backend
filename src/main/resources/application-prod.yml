@@ -1,0 +1,10 @@
+# Feel free to place all of your secret usernames and passwords here!
+
+spring:
+  r2dbc:
+    username: admin
+    password: admin
+
+administrator:
+  username: admin
+  password: admin

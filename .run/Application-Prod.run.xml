@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Application-Dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <option name="ACTIVE_PROFILES" value="dev" />
+  <configuration default="false" name="Application-Prod" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="prod" />
     <module name="backend" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.itmo.ohp.backend.Application" />
     <method v="2">

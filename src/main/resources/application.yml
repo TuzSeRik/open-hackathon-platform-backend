@@ -1,0 +1,15 @@
+# All usernames and passwords are exemplar!
+# You can setup unique and secure ones in prod profile
+
+server:
+  port: 20380
+
+spring:
+  r2dbc:
+    url: r2dbc:h2:file:///./database;MODE=MySQL
+    username: admin
+    password: admin
+
+administrator:
+  username: admin
+  password: admin
