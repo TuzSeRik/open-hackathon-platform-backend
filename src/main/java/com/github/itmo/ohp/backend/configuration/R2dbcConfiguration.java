@@ -10,7 +10,6 @@ import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.UUID;
 
 @Configuration
@@ -34,7 +33,7 @@ public class R2dbcConfiguration {
                         UUID.randomUUID(), username, new BCryptPasswordEncoder().encode(password), "ROLE_USER,ROLE_ADMIN"
                 ).getBytes()))
         );
-
+        
         initializer.setDatabasePopulator(compositeDatabasePopulator);
         
         return initializer;
