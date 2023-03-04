@@ -30,7 +30,7 @@ public class R2dbcConfiguration {
         compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
-                        "insert into users values (\'%s\', \'%s\', \'%s\', \'%s\');",
+                        "insert ignore into users values (\'%s\', \'%s\', \'%s\', \'%s\');",
                         UUID.randomUUID(), username, new BCryptPasswordEncoder().encode(password), "ROLE_USER,ROLE_ADMIN"
                 ).getBytes()))
         );

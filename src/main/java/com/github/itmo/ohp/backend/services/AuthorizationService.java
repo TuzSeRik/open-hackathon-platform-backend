@@ -10,11 +10,12 @@ import reactor.core.publisher.Mono;
 public class AuthorizationService {
     private final UserRepository userRepository;
     
-    public Mono<User> addUser(User user) {
-        return userRepository.save(user);
-    }
-    
     public Mono<User> findUser(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    public Mono<User> addUser(User user) {
+        user.setAuthorities("ROLE_USER");
+        return userRepository.save(user);
     }
 }

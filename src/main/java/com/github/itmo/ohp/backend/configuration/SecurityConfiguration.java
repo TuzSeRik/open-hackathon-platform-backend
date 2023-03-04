@@ -13,12 +13,12 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity @Configuration @RequiredArgsConstructor
 public class SecurityConfiguration {
     @Bean
-    SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
 //            .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(authorize -> authorize
-                .pathMatchers("/main/**").permitAll()
+                .pathMatchers("/user/**").permitAll()
                 .anyExchange().authenticated()
             )
             .httpBasic(Customizer.withDefaults());
