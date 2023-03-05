@@ -3,6 +3,8 @@ package com.github.itmo.ohp.backend.controllers;
 import com.github.itmo.ohp.backend.requests.results.HackathonPhaseTimerRequest;
 import com.github.itmo.ohp.backend.requests.results.MessageRequest;
 import com.github.itmo.ohp.backend.requests.results.UserResultRequest;
+import com.github.itmo.ohp.backend.services.ResultsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +14,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/results",
         produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class ResultsController {
 
+    private final ResultsService resultsService;
 
     // send result with hackathon id and user result
-    @PostMapping("/{id}")
-    public ResponseEntity<?> sendResult(@PathVariable UUID id, @RequestBody UserResultRequest userResultRequest) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    @PostMapping("/{hid}")
+    public ResponseEntity<?> sendResult(@PathVariable UUID hid, @RequestBody UserResultRequest userResultRequest) {
+        return new ResponseEntity<>(resultsService.sendResult(userResultRequest, hid), HttpStatus.OK);
     }
 
     // get results with hackathon id
