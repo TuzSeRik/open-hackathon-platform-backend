@@ -33,6 +33,12 @@ public class R2dbcConfiguration {
                         UUID.randomUUID(), username, new BCryptPasswordEncoder().encode(password), "ROLE_USER,ROLE_ADMIN"
                 ).getBytes()))
         );
+        compositeDatabasePopulator.addPopulators(
+                new ResourceDatabasePopulator(new ByteArrayResource(String.format(
+                        "insert ignore into teams values (\'%s\', \'%s\', \'%s\', \'%s\');",
+                        UUID.randomUUID(), "test-team", "https://github.com/ITMO-OHP/itmo-ohp", "This is the best test team ever created."
+                ).getBytes()))
+        );
         
         initializer.setDatabasePopulator(compositeDatabasePopulator);
         
