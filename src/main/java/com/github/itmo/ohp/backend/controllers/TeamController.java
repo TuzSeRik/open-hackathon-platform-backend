@@ -3,6 +3,7 @@ package com.github.itmo.ohp.backend.controllers;
 import com.github.itmo.ohp.backend.model.Team;
 import com.github.itmo.ohp.backend.repositories.TeamRepository;
 import com.github.itmo.ohp.backend.services.AuthorizationService;
+import com.github.itmo.ohp.backend.services.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -22,16 +23,17 @@ import java.util.UUID;
 public class TeamController {
 
     private final TeamRepository teamRepository;
+    private final TeamService teamService;
 
     @GetMapping
     public ResponseEntity<?> getTeams() {
-        Flux<Team> list = teamRepository.findAll();
+        Flux<Team> list = teamService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Team>> getTeam(@PathVariable UUID id) {
-        Mono<Team> team = teamRepository.findById(id);
+        Mono<Team> team = teamService.findById(id);
         return team.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
         //return ResponseEntity.ok().body(team);
