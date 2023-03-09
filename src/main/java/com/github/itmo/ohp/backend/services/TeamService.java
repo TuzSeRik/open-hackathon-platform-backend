@@ -5,7 +5,6 @@ import com.github.itmo.ohp.backend.repositories.UserRepository;
 import com.github.itmo.ohp.backend.responses.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

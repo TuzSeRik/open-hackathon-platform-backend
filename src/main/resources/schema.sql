@@ -12,3 +12,9 @@ create table if not exists users (
     authorities varchar_ignorecase(50)  default 'ROLE_USER'   not null,
     team_id     varchar_ignorecase(64)  references teams(id)
 );
+
+create table if not exists invites (
+    id          bigint unsigned         not null auto_increment primary key,
+    team_id     varchar_ignorecase(64)  references teams(id) not null unique,
+    is_active   boolean                 default true
+);

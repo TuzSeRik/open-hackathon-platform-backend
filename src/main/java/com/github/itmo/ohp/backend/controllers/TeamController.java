@@ -1,7 +1,11 @@
 package com.github.itmo.ohp.backend.controllers;
 
+import com.github.itmo.ohp.backend.model.Invite;
 import com.github.itmo.ohp.backend.model.Team;
+import com.github.itmo.ohp.backend.model.User;
+import com.github.itmo.ohp.backend.repositories.InviteRepository;
 import com.github.itmo.ohp.backend.repositories.TeamRepository;
+import com.github.itmo.ohp.backend.repositories.UserRepository;
 import com.github.itmo.ohp.backend.services.AuthorizationService;
 import com.github.itmo.ohp.backend.services.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +28,8 @@ import java.util.UUID;
 public class TeamController {
 
     private final TeamRepository teamRepository;
+    private final InviteRepository inviteRepository;
+    private final UserRepository userRepository;
     private final TeamService teamService;
 
     @GetMapping
@@ -58,5 +65,32 @@ public class TeamController {
         Mono<Void> result = teamRepository.deleteById(id);
         return result.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/invite/create")
+    public Mono<ResponseEntity<Invite>> createInvite(@PathVariable UUID id) {
+        Invite invite = new Invite(null, id, true);
+        Mono<Invite> result = inviteRepository.save(invite);
+        return result.map(ResponseEntity::ok)
+                     .onErrorReturn(ResponseEntity.badRequest().build())
+                     .defaultIfEmpty(ResponseEntity.internalServerError().build());
+    }
+
+    @GetMapping("/{id}/invite")
+    public Mono<ResponseEntity<Object>> inviteToTeam(Principal principal, @PathVariable UUID id) {
+        Mono<Invite> invite = inviteRepository.findByTeamId(id);
+        return invite.map(result -> {
+            if (result.isActive()){
+                userRepository.findByUsername(principal.getName()).subscribe(user -> {
+                    user.setTeamId(id);
+                    userRepository.save(user);
+                    System.out.println("Setting new team for user " + principal.getName() + ": " + id);
+                });
+                return ResponseEntity.ok().build();
+            }
+            else {
+                return ResponseEntity.notFound().build();
+            }
+        }).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }
