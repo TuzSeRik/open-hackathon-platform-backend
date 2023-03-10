@@ -67,7 +67,9 @@ public class TeamController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{id}/invite/create")
+
+    //TODO: add Owner field to Team object and check for ownership
+    @PostMapping("/{id}/invite")
     public Mono<ResponseEntity<Invite>> createInvite(@PathVariable UUID id) {
         Invite invite = new Invite(null, id, true);
         Mono<Invite> result = inviteRepository.save(invite);
@@ -91,6 +93,17 @@ public class TeamController {
             else {
                 return ResponseEntity.notFound().build();
             }
+        }).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    //Inverses activation on put request
+    @PutMapping("/{id}/invite")
+    public Mono<ResponseEntity<Mono<Invite>>> updateInvite(@PathVariable UUID id) {
+        Mono<Invite> invite = inviteRepository.findByTeamId(id);
+        return invite.map(result -> {
+            result.setActive(!result.isActive());
+            inviteRepository.save(result);
+            return ResponseEntity.ok(invite);
         }).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }
