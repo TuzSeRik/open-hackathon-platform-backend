@@ -28,19 +28,25 @@ public class R2dbcConfiguration {
         
         CompositeDatabasePopulator compositeDatabasePopulator = new CompositeDatabasePopulator();
         compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
-        compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
+        
+        // I would strongly encourage you to store queries, that do not require data from app,
+        // Inside data.sql
+        
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                         "insert ignore into teams values (\'%s\', \'%s\', \'%s\', \'%s\');",
                         teamUUID, "test-team", "https://github.com/ITMO-OHP/itmo-ohp", "This is the best test team ever created."
                 ).getBytes()))
         );
+        
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                         "insert ignore into users values (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\');",
                         UUID.randomUUID(), username, new BCryptPasswordEncoder().encode(password), "ROLE_USER,ROLE_ADMIN", teamUUID
                 ).getBytes()))
         );
+        
+        compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
 
         initializer.setDatabasePopulator(compositeDatabasePopulator);
         

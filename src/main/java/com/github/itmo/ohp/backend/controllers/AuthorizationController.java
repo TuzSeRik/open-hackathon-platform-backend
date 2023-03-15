@@ -1,8 +1,8 @@
 package com.github.itmo.ohp.backend.controllers;
 
 import com.github.itmo.ohp.backend.model.User;
-import com.github.itmo.ohp.backend.requests.RegistrationRequest;
-import com.github.itmo.ohp.backend.responses.AuthResponse;
+import com.github.itmo.ohp.backend.requests.authorization.RegistrationRequest;
+import com.github.itmo.ohp.backend.responses.authorization.AuthResponse;
 import com.github.itmo.ohp.backend.services.AuthorizationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.requests;
+package com.github.itmo.ohp.backend.requests.authorization;
 
 import lombok.Data;
 

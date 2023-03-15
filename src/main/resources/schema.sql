@@ -6,10 +6,10 @@ create table if not exists teams (
 );
 
 create table if not exists users (
-    id          varchar_ignorecase(50)  default random_uuid() not null primary key,
-    username    varchar_ignorecase(50)                        not null unique,
-    password    varchar_ignorecase(500)                       not null,
-    authorities varchar_ignorecase(50)  default 'ROLE_USER'   not null,
+    id          varchar_ignorecase(64)  default random_uuid() not null primary key,
+    username    varchar_ignorecase(64)                        not null unique,
+    password    varchar_ignorecase(512)                       not null,
+    authorities varchar_ignorecase(64)  default 'ROLE_USER'   not null,
     team_id     varchar_ignorecase(64)  references teams(id)
 );
 
@@ -17,4 +17,10 @@ create table if not exists invites (
     id          bigint unsigned         not null auto_increment primary key,
     team_id     varchar_ignorecase(64)  references teams(id) not null unique,
     is_active   boolean                 default true
+);
+
+create table if not exists info_pages (
+    id             varchar_ignorecase(64) default random_uuid() not null primary key,
+    text           longnvarchar           default ''            not null,
+    is_public      boolean                default false         not null unique
 );

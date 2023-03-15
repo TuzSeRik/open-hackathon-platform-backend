@@ -2,7 +2,7 @@ package com.github.itmo.ohp.backend.services;
 
 import com.github.itmo.ohp.backend.model.Team;
 import com.github.itmo.ohp.backend.repositories.UserRepository;
-import com.github.itmo.ohp.backend.responses.UserResponse;
+import com.github.itmo.ohp.backend.responses.authorization.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;

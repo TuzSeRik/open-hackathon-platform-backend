@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.responses;
+package com.github.itmo.ohp.backend.responses.authorization;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@Builder
-@AllArgsConstructor @NoArgsConstructor
+@Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class UserResponse {
     private UUID id;
     private String username;
