@@ -25,6 +25,7 @@ public class SecurityConfiguration {
             .authorizeExchange(authorize -> authorize
                 .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .pathMatchers("/user/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
                 .anyExchange().authenticated()
             )
             .httpBasic(Customizer.withDefaults());
