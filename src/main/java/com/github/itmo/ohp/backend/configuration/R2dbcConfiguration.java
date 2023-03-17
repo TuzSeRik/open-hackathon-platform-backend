@@ -9,7 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.UUID;
 
 @Configuration
@@ -42,7 +42,7 @@ public class R2dbcConfiguration {
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                         "insert ignore into users values (\'%s\', \'%s\', \'%s\', \'%s\', \'%s\');",
-                        UUID.randomUUID(), username, new BCryptPasswordEncoder().encode(password), "ROLE_USER,ROLE_ADMIN", teamUUID
+                        UUID.randomUUID(), username, SecurityConfiguration.passwordEncoder.encode(password), "ROLE_USER,ROLE_ORG,ROLE_ADMIN", teamUUID
                 ).getBytes()))
         );
         

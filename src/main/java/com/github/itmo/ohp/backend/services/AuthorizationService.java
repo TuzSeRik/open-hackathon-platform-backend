@@ -18,4 +18,9 @@ public class AuthorizationService {
         user.setAuthorities("ROLE_USER");
         return userRepository.save(user);
     }
+    
+    public Mono<User> addOrg(User user) {
+        user.setAuthorities("ROLE_USER,ROLE_ORG");
+        return userRepository.save(user);
+    }
 }

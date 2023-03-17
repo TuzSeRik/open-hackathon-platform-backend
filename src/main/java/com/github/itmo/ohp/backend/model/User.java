@@ -1,5 +1,6 @@
 package com.github.itmo.ohp.backend.model;
 
+import com.github.itmo.ohp.backend.configuration.SecurityConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,10 @@ public class User {
     private String authorities;
     @Column("team_id")
     private UUID teamId;
+    
+    public User setPassword(String password) {
+        this.password = SecurityConfiguration.passwordEncoder.encode(password);
+        
+        return this;
+    }
 }

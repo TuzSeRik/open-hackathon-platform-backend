@@ -17,6 +17,8 @@ import java.util.List;
 
 @EnableWebFluxSecurity @Configuration @RequiredArgsConstructor
 public class SecurityConfiguration {
+    public final static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
@@ -24,6 +26,7 @@ public class SecurityConfiguration {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(authorize -> authorize
                 .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .pathMatchers("/user/org").hasAuthority("ROLE_ADMIN")
                 .pathMatchers("/user/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
                 .anyExchange().authenticated()
@@ -46,6 +49,6 @@ public class SecurityConfiguration {
     
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return passwordEncoder;
     }
 }
