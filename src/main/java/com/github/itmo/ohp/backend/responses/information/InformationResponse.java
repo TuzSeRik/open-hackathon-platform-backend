@@ -9,5 +9,5 @@ import java.util.UUID;
 @Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class InformationResponse {
     private UUID id;
-    private String text;
+    private String data;
 }

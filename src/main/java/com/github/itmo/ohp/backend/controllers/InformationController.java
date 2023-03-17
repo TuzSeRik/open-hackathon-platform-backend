@@ -15,11 +15,11 @@ public class InformationController {
     
     @PostMapping("/public")
     public Mono<ResponseEntity<InformationResponse>> setPublicInfoPage(@RequestBody InformationRequest request) {
-        return informationService.updatePublicPage(request.getText())
+        return informationService.updatePublicPage(request.getData())
                 .map(p -> new ResponseEntity<>(
                       new InformationResponse()
                               .setId(p.getId())
-                              .setText(p.getText()),
+                              .setData(p.getText()),
                       HttpStatus.OK
                 ));
     }
@@ -30,18 +30,18 @@ public class InformationController {
           p -> new ResponseEntity<>(
                   new InformationResponse()
                       .setId(p.getId())
-                      .setText(p.getText()),
+                      .setData(p.getText()),
                   HttpStatus.OK)
         );
     }
     
     @PostMapping("/private")
     public Mono<ResponseEntity<InformationResponse>> setPrivateInfoPage(@RequestBody InformationRequest request) {
-        return informationService.updatePrivatePage(request.getText())
+        return informationService.updatePrivatePage(request.getData())
                 .map(p -> new ResponseEntity<>(
                         new InformationResponse()
                                 .setId(p.getId())
-                                .setText(p.getText()),
+                                .setData(p.getText()),
                         HttpStatus.OK
                 ));
     }
@@ -52,7 +52,7 @@ public class InformationController {
                 p -> new ResponseEntity<>(
                         new InformationResponse()
                                 .setId(p.getId())
-                                .setText(p.getText()),
+                                .setData(p.getText()),
                         HttpStatus.OK)
         );
     }

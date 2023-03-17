@@ -25,7 +25,7 @@ public class AuthorizationController {
     @PostMapping("/auth")
     public Mono<ResponseEntity<AuthResponse>> authUser(@AuthenticationPrincipal UserDetails userDetails) {
         assert userDetails != null;
-
+        
         return Mono.just(new ResponseEntity<>(
                 new AuthResponse()
                         .setIsAuthorized(true)

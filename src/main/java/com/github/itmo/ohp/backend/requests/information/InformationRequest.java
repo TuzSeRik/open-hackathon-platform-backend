@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class InformationRequest {
-    private String text;
+    private String data;
 }
