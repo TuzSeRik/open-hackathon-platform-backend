@@ -24,3 +24,10 @@ create table if not exists info_pages (
     text           longnvarchar           default ''            not null,
     is_public      boolean                default false         not null unique
 );
+
+create table if not exists manual_scores (
+   id          int                      auto_increment primary key,
+   place       int                      not null,
+   team_id     varchar_ignorecase(64)   references teams(id) not null unique,
+   comment     varchar_ignorecase(512)
+);
