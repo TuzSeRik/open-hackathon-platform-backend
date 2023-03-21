@@ -1,8 +1,8 @@
-package com.github.itmo.ohp.backend.controllers;
+package com.github.itmo.ohp.backend.information.module.controllers;
 
-import com.github.itmo.ohp.backend.requests.information.InformationRequest;
-import com.github.itmo.ohp.backend.responses.information.InformationResponse;
-import com.github.itmo.ohp.backend.services.InformationService;
+import com.github.itmo.ohp.backend.information.module.InformationChangeRequest;
+import com.github.itmo.ohp.backend.information.module.InformationResponse;
+import com.github.itmo.ohp.backend.information.module.InformationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class InformationController {
     private final InformationService informationService;
     
     @PostMapping("/public")
-    public Mono<ResponseEntity<InformationResponse>> setPublicInfoPage(@RequestBody InformationRequest request) {
+    public Mono<ResponseEntity<InformationResponse>> setPublicInfoPage(@RequestBody InformationChangeRequest request) {
         return informationService.updatePublicPage(request.getData())
                 .map(p -> new ResponseEntity<>(
                       new InformationResponse()
@@ -36,7 +36,7 @@ public class InformationController {
     }
     
     @PostMapping("/private")
-    public Mono<ResponseEntity<InformationResponse>> setPrivateInfoPage(@RequestBody InformationRequest request) {
+    public Mono<ResponseEntity<InformationResponse>> setPrivateInfoPage(@RequestBody InformationChangeRequest request) {
         return informationService.updatePrivatePage(request.getData())
                 .map(p -> new ResponseEntity<>(
                         new InformationResponse()
@@ -56,4 +56,5 @@ public class InformationController {
                         HttpStatus.OK)
         );
     }
+    
 }

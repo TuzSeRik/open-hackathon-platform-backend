@@ -1,13 +1,11 @@
 package com.github.itmo.ohp.backend.services;
 
 import com.github.itmo.ohp.backend.model.Result;
-import com.github.itmo.ohp.backend.model.User;
 import com.github.itmo.ohp.backend.repositories.HackathonRepository;
 import com.github.itmo.ohp.backend.repositories.ResultRepository;
 import com.github.itmo.ohp.backend.requests.results.UserResultRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;

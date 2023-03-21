@@ -2,24 +2,17 @@ package com.github.itmo.ohp.backend.controllers;
 
 import com.github.itmo.ohp.backend.model.Invite;
 import com.github.itmo.ohp.backend.model.Team;
-import com.github.itmo.ohp.backend.model.User;
 import com.github.itmo.ohp.backend.repositories.InviteRepository;
 import com.github.itmo.ohp.backend.repositories.TeamRepository;
-import com.github.itmo.ohp.backend.repositories.UserRepository;
-import com.github.itmo.ohp.backend.services.AuthorizationService;
+import com.github.itmo.ohp.backend.authorization.module.UserRepository;
 import com.github.itmo.ohp.backend.services.TeamService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.security.Principal;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

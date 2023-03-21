@@ -1,9 +1,6 @@
-package com.github.itmo.ohp.backend.controllers;
+package com.github.itmo.ohp.backend.authorization.module;
 
-import com.github.itmo.ohp.backend.model.User;
-import com.github.itmo.ohp.backend.requests.authorization.RegistrationRequest;
-import com.github.itmo.ohp.backend.responses.authorization.AuthResponse;
-import com.github.itmo.ohp.backend.services.AuthorizationService;
+import com.github.itmo.ohp.backend.authorization.module.services.AuthorizationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +35,7 @@ public class AuthorizationController {
     
     @PostMapping("/register")
     public Mono<ResponseEntity<AuthResponse>> registerUser(@RequestBody RegistrationRequest request) {
-        User user = new User().setUsername(request.getUsername()).setPassword(request.getPassword());
+        UserModel user = new UserModel().setUsername(request.getUsername()).setPassword(request.getPassword());
         
         return authorizationService.addUser(user)
                 .map(u -> {
@@ -54,7 +51,7 @@ public class AuthorizationController {
     
     @PostMapping("/org")
     public Mono<ResponseEntity<AuthResponse>> registerOrg(@RequestBody RegistrationRequest request) {
-        User user = new User().setUsername(request.getUsername()).setPassword(request.getPassword());
+        UserModel user = new UserModel().setUsername(request.getUsername()).setPassword(request.getPassword());
         
         return authorizationService.addOrg(user)
                 .map(u -> {

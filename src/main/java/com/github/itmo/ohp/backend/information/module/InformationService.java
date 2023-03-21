@@ -1,7 +1,5 @@
-package com.github.itmo.ohp.backend.services;
+package com.github.itmo.ohp.backend.information.module;
 
-import com.github.itmo.ohp.backend.model.InfoPage;
-import com.github.itmo.ohp.backend.repositories.InfoPageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -10,7 +8,7 @@ import reactor.core.publisher.Mono;
 public class InformationService {
     private final InfoPageRepository infoPageRepository;
     
-    public Mono<InfoPage> updatePublicPage(String text) {
+    public Mono<InfoPageModel> updatePublicPage(String text) {
         return getPublicPage()
                 .flatMap(p -> {
                     p.setText(text);
@@ -19,7 +17,7 @@ public class InformationService {
         );
     }
     
-    public Mono<InfoPage> updatePrivatePage(String text) {
+    public Mono<InfoPageModel> updatePrivatePage(String text) {
         return getPrivatePage()
                 .flatMap(p -> {
                             p.setText(text);
@@ -28,15 +26,16 @@ public class InformationService {
                 );
     }
 
-    public Mono<InfoPage> getPublicPage() {
+    public Mono<InfoPageModel> getPublicPage() {
         return getPageByVisibility(true);
     }
     
-    public Mono<InfoPage> getPrivatePage() {
+    public Mono<InfoPageModel> getPrivatePage() {
         return getPageByVisibility(false);
     }
     
-    public Mono<InfoPage> getPageByVisibility(Boolean isPublic) {
+    public Mono<InfoPageModel> getPageByVisibility(Boolean isPublic) {
         return infoPageRepository.getInfoPageByIsPublic(isPublic);
     }
+    
 }

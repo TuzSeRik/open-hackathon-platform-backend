@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.services;
+package com.github.itmo.ohp.backend.authorization.module.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,4 +25,5 @@ public class DatabaseReactiveUserDetailsService implements ReactiveUserDetailsSe
             )
         ));
     }
+    
 }

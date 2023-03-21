@@ -9,7 +9,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
-
 import java.util.UUID;
 
 @Configuration
@@ -52,4 +51,5 @@ public class R2dbcConfiguration {
         
         return initializer;
     }
+    
 }

@@ -42,8 +42,10 @@ public class SecurityConfiguration {
         configuration.applyPermitDefaultValues();
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         configuration.setAllowedMethods(List.of("*"));
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        
         return source;
     }
     
@@ -51,4 +53,5 @@ public class SecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         return passwordEncoder;
     }
+    
 }

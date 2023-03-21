@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.responses.authorization;
+package com.github.itmo.ohp.backend.authorization.module;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,4 +9,5 @@ import java.util.List;
 public class AuthResponse {
     private Boolean isAuthorized;
     private List<String> authorities;
+    
 }

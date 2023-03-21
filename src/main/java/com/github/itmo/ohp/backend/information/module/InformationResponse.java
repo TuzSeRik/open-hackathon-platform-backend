@@ -1,13 +1,13 @@
-package com.github.itmo.ohp.backend.responses.information;
+package com.github.itmo.ohp.backend.information.module;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.UUID;
 
-@Data @Builder @AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class InformationResponse {
     private UUID id;
     private String data;
+    
 }

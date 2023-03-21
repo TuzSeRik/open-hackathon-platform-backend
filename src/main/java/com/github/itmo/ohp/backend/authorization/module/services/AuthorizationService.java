@@ -1,7 +1,7 @@
-package com.github.itmo.ohp.backend.services;
+package com.github.itmo.ohp.backend.authorization.module.services;
 
-import com.github.itmo.ohp.backend.model.User;
-import com.github.itmo.ohp.backend.repositories.UserRepository;
+import com.github.itmo.ohp.backend.authorization.module.UserModel;
+import com.github.itmo.ohp.backend.authorization.module.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -10,17 +10,18 @@ import reactor.core.publisher.Mono;
 public class AuthorizationService {
     private final UserRepository userRepository;
     
-    public Mono<User> findUser(String username) {
+    public Mono<UserModel> findUser(String username) {
         return userRepository.findByUsername(username);
     }
     
-    public Mono<User> addUser(User user) {
+    public Mono<UserModel> addUser(UserModel user) {
         user.setAuthorities("ROLE_USER");
         return userRepository.save(user);
     }
     
-    public Mono<User> addOrg(User user) {
+    public Mono<UserModel> addOrg(UserModel user) {
         user.setAuthorities("ROLE_USER,ROLE_ORG");
         return userRepository.save(user);
     }
+    
 }

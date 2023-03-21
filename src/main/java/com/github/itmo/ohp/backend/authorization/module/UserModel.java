@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.model;
+package com.github.itmo.ohp.backend.authorization.module;
 
 import com.github.itmo.ohp.backend.configuration.SecurityConfiguration;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.util.UUID;
 
 @Table("users") @Data @AllArgsConstructor @NoArgsConstructor
-public class User {
+public class UserModel {
     @Id
     private UUID id;
     private String username;
@@ -19,9 +19,10 @@ public class User {
     @Column("team_id")
     private UUID teamId;
     
-    public User setPassword(String password) {
+    public UserModel setPassword(String password) {
         this.password = SecurityConfiguration.passwordEncoder.encode(password);
         
         return this;
     }
+    
 }
