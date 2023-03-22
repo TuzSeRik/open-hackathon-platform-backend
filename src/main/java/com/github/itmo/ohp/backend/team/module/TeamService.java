@@ -1,8 +1,7 @@
-package com.github.itmo.ohp.backend.services;
+package com.github.itmo.ohp.backend.team.module;
 
-import com.github.itmo.ohp.backend.model.Team;
 import com.github.itmo.ohp.backend.authorization.module.UserRepository;
-import com.github.itmo.ohp.backend.responses.UserResponse;
+import com.github.itmo.ohp.backend.team.module.model.TeamModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;
@@ -25,13 +24,13 @@ public class TeamService{
             LEFT JOIN users ON users.team_id = teams.id
             """;
 
-    public Flux<Team> findAll() {
+    public Flux<TeamModel> findAll() {
         return client.sql(SELECT_QUERY)
                 .fetch()
                 .all()
                 .bufferUntilChanged(result -> result.get("teamId"))
                 .map(list -> {
-                        Team.TeamBuilder teamBuilder = Team.builder();
+                        TeamModel.TeamBuilder teamBuilder = TeamModel.builder();
                         teamBuilder.id(UUID.fromString(String.valueOf(list.get(0).get("teamId"))));
                         teamBuilder.name(String.valueOf(list.get(0).get("teamName")));
                         teamBuilder.github(String.valueOf(list.get(0).get("teamGithub")));
@@ -47,14 +46,14 @@ public class TeamService{
                 });
     }
 
-    public Mono<Team> findById(UUID id) {
+    public Mono<TeamModel> findById(UUID id) {
         return client.sql(String.format("%s WHERE teams.id = :id", SELECT_QUERY))
                 .bind("id", id)
                 .fetch()
                 .all()
                 .bufferUntilChanged(result -> result.get("teamId"))
                 .map(list -> {
-                    Team.TeamBuilder teamBuilder = Team.builder();
+                    TeamModel.TeamBuilder teamBuilder = TeamModel.builder();
                     teamBuilder.id(UUID.fromString(String.valueOf(list.get(0).get("teamId"))));
                     teamBuilder.name(String.valueOf(list.get(0).get("teamName")));
                     teamBuilder.github(String.valueOf(list.get(0).get("teamGithub")));

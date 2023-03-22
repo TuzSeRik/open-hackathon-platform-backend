@@ -1,11 +1,10 @@
-package com.github.itmo.ohp.backend.controllers;
+package com.github.itmo.ohp.backend.team.module;
 
-import com.github.itmo.ohp.backend.model.Invite;
-import com.github.itmo.ohp.backend.model.Team;
-import com.github.itmo.ohp.backend.repositories.InviteRepository;
-import com.github.itmo.ohp.backend.repositories.TeamRepository;
+import com.github.itmo.ohp.backend.team.module.model.InviteModel;
+import com.github.itmo.ohp.backend.team.module.model.TeamModel;
+import com.github.itmo.ohp.backend.team.module.repositories.InviteRepository;
+import com.github.itmo.ohp.backend.team.module.repositories.TeamRepository;
 import com.github.itmo.ohp.backend.authorization.module.UserRepository;
-import com.github.itmo.ohp.backend.services.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,28 +26,28 @@ public class TeamController {
 
     @GetMapping
     public ResponseEntity<?> getTeams() {
-        Flux<Team> list = teamService.findAll();
+        Flux<TeamModel> list = teamService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Team>> getTeam(@PathVariable UUID id) {
-        Mono<Team> team = teamService.findById(id);
+    public Mono<ResponseEntity<TeamModel>> getTeam(@PathVariable UUID id) {
+        Mono<TeamModel> team = teamService.findById(id);
         return team.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
         //return ResponseEntity.ok().body(team);
     }
 
     @PostMapping
-    public Mono<ResponseEntity<Team>> createTeam(@RequestBody Team team) {
-        Mono<Team> result = teamRepository.save(team);
+    public Mono<ResponseEntity<TeamModel>> createTeam(@RequestBody TeamModel team) {
+        Mono<TeamModel> result = teamRepository.save(team);
         return result.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Team>> updateTeam(@RequestBody Team team) {
-        Mono<Team> result = teamRepository.save(team);
+    public Mono<ResponseEntity<TeamModel>> updateTeam(@RequestBody TeamModel team) {
+        Mono<TeamModel> result = teamRepository.save(team);
         return result.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
@@ -63,9 +62,9 @@ public class TeamController {
 
     //TODO: add Owner field to Team object and check for ownership
     @PostMapping("/{id}/invite")
-    public Mono<ResponseEntity<Invite>> createInvite(@PathVariable UUID id) {
-        Invite invite = new Invite(null, id, true);
-        Mono<Invite> result = inviteRepository.save(invite);
+    public Mono<ResponseEntity<InviteModel>> createInvite(@PathVariable UUID id) {
+        InviteModel invite = new InviteModel(null, id, true);
+        Mono<InviteModel> result = inviteRepository.save(invite);
         return result.map(ResponseEntity::ok)
                      .onErrorReturn(ResponseEntity.badRequest().build())
                      .defaultIfEmpty(ResponseEntity.internalServerError().build());
@@ -73,7 +72,7 @@ public class TeamController {
 
     @GetMapping("/{id}/invite")
     public Mono<ResponseEntity<Object>> inviteToTeam(Principal principal, @PathVariable UUID id) {
-        Mono<Invite> invite = inviteRepository.findByTeamId(id);
+        Mono<InviteModel> invite = inviteRepository.findByTeamId(id);
         return invite.map(result -> {
             if (result.isActive()){
                 userRepository.findByUsername(principal.getName()).subscribe(user -> {
@@ -91,8 +90,8 @@ public class TeamController {
 
     //Inverses activation on put request
     @PutMapping("/{id}/invite")
-    public Mono<ResponseEntity<Mono<Invite>>> updateInvite(@PathVariable UUID id) {
-        Mono<Invite> invite = inviteRepository.findByTeamId(id);
+    public Mono<ResponseEntity<Mono<InviteModel>>> updateInvite(@PathVariable UUID id) {
+        Mono<InviteModel> invite = inviteRepository.findByTeamId(id);
         return invite.map(result -> {
             result.setActive(!result.isActive());
             inviteRepository.save(result);

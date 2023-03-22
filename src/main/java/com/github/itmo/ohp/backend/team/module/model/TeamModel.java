@@ -1,6 +1,6 @@
-package com.github.itmo.ohp.backend.model;
+package com.github.itmo.ohp.backend.team.module.model;
 
-import com.github.itmo.ohp.backend.responses.UserResponse;
+import com.github.itmo.ohp.backend.team.module.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @Table("teams")
 @Builder
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Team {
+public class TeamModel {
     @Id
     private UUID id;
     private String name;

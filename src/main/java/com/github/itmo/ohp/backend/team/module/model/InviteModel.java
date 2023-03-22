@@ -1,9 +1,8 @@
-package com.github.itmo.ohp.backend.model;
+package com.github.itmo.ohp.backend.team.module.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -12,7 +11,7 @@ import java.util.UUID;
 
 @Table("invites")
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Invite {
+public class InviteModel {
     @Id
     private Long id;
     @Column("team_id")
