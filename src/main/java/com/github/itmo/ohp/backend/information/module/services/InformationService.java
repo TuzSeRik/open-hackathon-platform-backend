@@ -1,5 +1,7 @@
-package com.github.itmo.ohp.backend.information.module;
+package com.github.itmo.ohp.backend.information.module.services;
 
+import com.github.itmo.ohp.backend.information.module.InfoPageModel;
+import com.github.itmo.ohp.backend.information.module.InfoPageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

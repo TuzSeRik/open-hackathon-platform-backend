@@ -29,6 +29,7 @@ public class SecurityConfiguration {
                 .pathMatchers("/user/org").hasAuthority("ROLE_ADMIN")
                 .pathMatchers("/user/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
+                .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
                 .anyExchange().authenticated()
             )
             .httpBasic(Customizer.withDefaults());
@@ -40,7 +41,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.applyPermitDefaultValues();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:4173"));
         configuration.setAllowedMethods(List.of("*"));
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -2,7 +2,7 @@ package com.github.itmo.ohp.backend.information.module.controllers;
 
 import com.github.itmo.ohp.backend.information.module.InformationChangeRequest;
 import com.github.itmo.ohp.backend.information.module.InformationResponse;
-import com.github.itmo.ohp.backend.information.module.InformationService;
+import com.github.itmo.ohp.backend.information.module.services.InformationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
