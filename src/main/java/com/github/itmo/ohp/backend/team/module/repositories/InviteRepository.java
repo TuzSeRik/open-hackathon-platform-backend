@@ -1,5 +1,5 @@
 package com.github.itmo.ohp.backend.team.module.repositories;
-import com.github.itmo.ohp.backend.team.module.model.InviteModel;
+import com.github.itmo.ohp.backend.team.module.models.InviteModel;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 

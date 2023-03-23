@@ -1,6 +1,6 @@
 package com.github.itmo.ohp.backend.authorization.module;
 
-import com.github.itmo.ohp.backend.configuration.SecurityConfiguration;
+import com.github.itmo.ohp.backend.configuration.module.SecurityConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

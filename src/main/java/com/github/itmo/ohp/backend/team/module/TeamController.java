@@ -1,7 +1,7 @@
 package com.github.itmo.ohp.backend.team.module;
 
-import com.github.itmo.ohp.backend.team.module.model.InviteModel;
-import com.github.itmo.ohp.backend.team.module.model.TeamModel;
+import com.github.itmo.ohp.backend.team.module.models.InviteModel;
+import com.github.itmo.ohp.backend.team.module.models.TeamModel;
 import com.github.itmo.ohp.backend.team.module.repositories.InviteRepository;
 import com.github.itmo.ohp.backend.team.module.repositories.TeamRepository;
 import com.github.itmo.ohp.backend.authorization.module.UserRepository;
