@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.hackathon.module;
+package com.github.itmo.ohp.backend.hackathon.module.services;
 
 import com.github.itmo.ohp.backend.hackathon.module.models.ResultModel;
 import com.github.itmo.ohp.backend.hackathon.module.repositories.HackathonRepository;

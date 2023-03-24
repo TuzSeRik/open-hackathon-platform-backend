@@ -25,14 +25,20 @@ public class SecurityConfiguration {
 //            .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(authorize -> authorize
-                .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .pathMatchers("/user/org").hasAuthority("ROLE_ADMIN")
-                .pathMatchers("/user/**").permitAll()
-                .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
-                .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
-                .anyExchange().authenticated()
-            )
-            .httpBasic(Customizer.withDefaults());
+                    .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                    .pathMatchers("/user/org").hasAuthority("ROLE_ADMIN")
+                    .pathMatchers("/user/**").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
+                    
+                    // Hackathon module
+                    .pathMatchers(HttpMethod.GET, "/api/hackathon/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.POST, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
+                    .pathMatchers(HttpMethod.PUT, "/api/hackathon/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.DELETE, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
+                    
+                    .anyExchange().authenticated()
+            ).httpBasic(Customizer.withDefaults());
         
         return http.build();
     }

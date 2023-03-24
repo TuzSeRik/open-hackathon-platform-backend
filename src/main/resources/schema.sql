@@ -31,3 +31,11 @@ create table if not exists manual_scores (
    team_id     varchar_ignorecase(64)   references teams(id) not null unique,
    comment     varchar_ignorecase(512)
 );
+
+create table if not exists hackathons (
+    id         varchar_ignorecase(64)   default random_uuid()       not null primary key,
+    start_time timestamp with time zone default current_timestamp() not null,
+    end_time   timestamp with time zone default current_timestamp() not null,
+    is_ready   boolean                  default false               not null unique
+
+);

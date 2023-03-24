@@ -1,5 +1,6 @@
-package com.github.itmo.ohp.backend.hackathon.module;
+package com.github.itmo.ohp.backend.hackathon.module.controllers;
 
+import com.github.itmo.ohp.backend.hackathon.module.services.ResultsService;
 import com.github.itmo.ohp.backend.hackathon.module.requests.HackathonPhaseTimerRequest;
 import com.github.itmo.ohp.backend.hackathon.module.requests.MessageRequest;
 import com.github.itmo.ohp.backend.hackathon.module.requests.UserResultRequest;
