@@ -39,3 +39,12 @@ create table if not exists hackathons (
     is_ready   boolean                  default false               not null unique
 
 );
+
+create table if not exists stages (
+    id           varchar_ignorecase(64)   default random_uuid()       not null primary key,
+    hackathon_id varchar_ignorecase(64)   references hackathons(id)   not null,
+    start_time   timestamp with time zone default current_timestamp() not null,
+    end_time     timestamp with time zone default current_timestamp() not null,
+    is_ready     boolean                  default false               not null
+
+);

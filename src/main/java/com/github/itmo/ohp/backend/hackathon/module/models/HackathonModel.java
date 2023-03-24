@@ -1,9 +1,6 @@
 package com.github.itmo.ohp.backend.hackathon.module.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -15,11 +12,24 @@ import java.util.UUID;
 public class HackathonModel {
     @Id
     private UUID id;
-    @Column("start_time")
+    @Column("start_time") @NonNull
     private ZonedDateTime startTime;
-    @Column("end_time")
+    @Column("end_time") @NonNull
     private ZonedDateTime endTime;
     @Column("is_ready")
     private Boolean isReady;
+    
+    public Boolean ensureTimeContinuity() {
+        if (endTime.isBefore(startTime)) {
+            ZonedDateTime swap = startTime;
+            startTime = endTime;
+            endTime = swap;
+            
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     
 }

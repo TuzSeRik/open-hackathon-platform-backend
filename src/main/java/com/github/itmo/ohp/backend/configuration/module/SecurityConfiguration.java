@@ -31,11 +31,17 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
                     .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
                     
-                    // Hackathon module
-                    .pathMatchers(HttpMethod.GET, "/api/hackathon/**").hasAuthority("ROLE_ORG")
+                    // Hackathon module start
+                    .pathMatchers(HttpMethod.GET, "/api/hackathon/**").hasAuthority("ROLE_USER")
                     .pathMatchers(HttpMethod.POST, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
                     .pathMatchers(HttpMethod.PUT, "/api/hackathon/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.DELETE, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
+        
+                    .pathMatchers(HttpMethod.GET, "/api/stage/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.POST, "/api/stage/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.PUT, "/api/stage/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.DELETE, "/api/stage/**").hasAuthority("ROLE_ORG")
+                    // Hackathon module end
                     
                     .anyExchange().authenticated()
             ).httpBasic(Customizer.withDefaults());

@@ -57,13 +57,16 @@ public class R2dbcConfiguration {
                 .atZone(ZoneId.systemDefault());
         String formattedEndTime = endTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
         
+        // Hackathon module start
+        UUID hackathonId = UUID.randomUUID();
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                                 "insert ignore into hackathons values ('%s', '%s', '%s', '%s');",
-                        UUID.randomUUID(), formattedStartTime, formattedEndTime, false)
+                                hackathonId , formattedStartTime, formattedEndTime, false)
                     .getBytes())
                 )
         );
+        // Hackathon module end
         
         compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
 

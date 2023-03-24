@@ -21,10 +21,14 @@ public class HackathonService {
     }
     
     public Mono<HackathonModel> saveHackathon(HackathonModel hackathon) {
+        hackathon.ensureTimeContinuity();
+        
         return hackathonRepository.save(hackathon);
     }
     
     public Mono<HackathonModel> updateHackathon(UUID id, HackathonModel hackathon) {
+        hackathon.ensureTimeContinuity();
+        
         return hackathonRepository.findById(id)
                 .flatMap(changingHackathon -> {
                     changingHackathon.setStartTime(hackathon.getStartTime());
