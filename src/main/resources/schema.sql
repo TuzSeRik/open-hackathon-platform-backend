@@ -63,3 +63,12 @@ create table if not exists task_problems (
     problem varchar_ignorecase(512) default ''            not null
 
 );
+
+create table if not exists results (
+    id              varchar_ignorecase(64)  default random_uuid()        not null primary key,
+    task_problem_id varchar_ignorecase(64)  references task_problems(id) not null,
+    team_id         varchar_ignorecase(64)  references teams(id)         not null,
+    answer          varchar_ignorecase(512) default ''                   not null,
+    is_accepted     boolean                 default false                not null
+
+);

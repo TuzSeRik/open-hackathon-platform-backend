@@ -51,7 +51,6 @@ public class TaskProblemService {
         return taskProblems;
     }
     
-    
     public Flux<TaskProblemModel> deleteAllTaskProblemsForTask(UUID taskId) {
         Flux<TaskProblemModel> taskProblems = taskProblemRepository.findAllByTaskId(taskId);
         taskProblemRepository.deleteAllByTaskId(taskId);

@@ -1,24 +1,23 @@
 package com.github.itmo.ohp.backend.hackathon.module.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
-
 import java.util.UUID;
 
-@Table("results")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Table("results") @Data @Builder
+@AllArgsConstructor @NoArgsConstructor
 public class ResultModel {
     @Id
     private UUID id;
-    private String link;
-
-    //TODO: one to one or many to one --> hackathon
-    private UUID hackathonId;
-    private UUID userId;
-
+    @Column("task_problem_id") @NonNull
+    private UUID taskProblemId;
+    @Column("team_id") @NonNull
+    private UUID teamId;
+    @NonNull
+    private String answer;
+    @Column("is_accepted") @NonNull
+    private Boolean isAccepted;
+    
 }
