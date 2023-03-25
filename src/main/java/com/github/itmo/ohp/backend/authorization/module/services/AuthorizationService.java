@@ -1,7 +1,7 @@
 package com.github.itmo.ohp.backend.authorization.module.services;
 
-import com.github.itmo.ohp.backend.authorization.module.UserModel;
-import com.github.itmo.ohp.backend.authorization.module.UserRepository;
+import com.github.itmo.ohp.backend.authorization.module.models.UserModel;
+import com.github.itmo.ohp.backend.authorization.module.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

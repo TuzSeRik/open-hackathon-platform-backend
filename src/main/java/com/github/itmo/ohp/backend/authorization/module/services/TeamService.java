@@ -1,7 +1,8 @@
-package com.github.itmo.ohp.backend.team.module;
+package com.github.itmo.ohp.backend.authorization.module.services;
 
-import com.github.itmo.ohp.backend.authorization.module.UserRepository;
-import com.github.itmo.ohp.backend.team.module.models.TeamModel;
+import com.github.itmo.ohp.backend.authorization.module.models.TeamModel;
+import com.github.itmo.ohp.backend.authorization.module.repositories.UserRepository;
+import com.github.itmo.ohp.backend.authorization.module.responses.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;

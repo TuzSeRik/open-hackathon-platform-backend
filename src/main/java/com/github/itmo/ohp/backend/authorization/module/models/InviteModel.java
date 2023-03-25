@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.team.module.models;
+package com.github.itmo.ohp.backend.authorization.module.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

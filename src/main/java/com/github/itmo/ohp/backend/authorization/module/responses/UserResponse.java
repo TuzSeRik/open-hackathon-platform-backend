@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.team.module;
+package com.github.itmo.ohp.backend.authorization.module.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

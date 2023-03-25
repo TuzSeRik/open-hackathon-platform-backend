@@ -1,10 +1,11 @@
-package com.github.itmo.ohp.backend.team.module;
+package com.github.itmo.ohp.backend.authorization.module.controllers;
 
-import com.github.itmo.ohp.backend.team.module.models.InviteModel;
-import com.github.itmo.ohp.backend.team.module.models.TeamModel;
-import com.github.itmo.ohp.backend.team.module.repositories.InviteRepository;
-import com.github.itmo.ohp.backend.team.module.repositories.TeamRepository;
-import com.github.itmo.ohp.backend.authorization.module.UserRepository;
+import com.github.itmo.ohp.backend.authorization.module.models.InviteModel;
+import com.github.itmo.ohp.backend.authorization.module.models.TeamModel;
+import com.github.itmo.ohp.backend.authorization.module.repositories.InviteRepository;
+import com.github.itmo.ohp.backend.authorization.module.repositories.TeamRepository;
+import com.github.itmo.ohp.backend.authorization.module.repositories.UserRepository;
+import com.github.itmo.ohp.backend.authorization.module.services.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,5 +1,6 @@
-package com.github.itmo.ohp.backend.authorization.module;
+package com.github.itmo.ohp.backend.authorization.module.repositories;
 
+import com.github.itmo.ohp.backend.authorization.module.models.UserModel;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 import java.util.UUID;

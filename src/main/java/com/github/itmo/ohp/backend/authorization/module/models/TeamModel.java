@@ -1,6 +1,6 @@
-package com.github.itmo.ohp.backend.team.module.models;
+package com.github.itmo.ohp.backend.authorization.module.models;
 
-import com.github.itmo.ohp.backend.team.module.UserResponse;
+import com.github.itmo.ohp.backend.authorization.module.responses.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
