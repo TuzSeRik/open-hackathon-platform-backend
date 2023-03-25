@@ -15,19 +15,22 @@ create table if not exists users (
     authorities varchar_ignorecase(64)  default 'ROLE_USER'   not null
 
 );
--- Authorization module end
 
 create table if not exists invites (
-    id          bigint unsigned         not null auto_increment primary key,
-    team_id     varchar_ignorecase(64)  references teams(id) not null unique,
-    is_active   boolean                 default true
-);
+    id        varchar_ignorecase(64)  default random_uuid() not null primary key,
+    team_id   varchar_ignorecase(64)  references teams(id)  not null unique,
+    is_active boolean                 default true
 
+);
+-- Authorization module end
+
+-- Information module start
 create table if not exists info_pages (
     id             varchar_ignorecase(64) default random_uuid() not null primary key,
     text           longnvarchar           default ''            not null,
     is_public      boolean                default false         not null unique
 );
+-- Information module end
 
 create table if not exists manual_scores (
    id          int                      auto_increment primary key,

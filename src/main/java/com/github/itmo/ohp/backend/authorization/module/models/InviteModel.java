@@ -1,21 +1,19 @@
 package com.github.itmo.ohp.backend.authorization.module.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
-
 import java.util.UUID;
 
-@Table("invites")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Table("invites") @Data @Builder
+@AllArgsConstructor @NoArgsConstructor
 public class InviteModel {
     @Id
-    private Long id;
-    @Column("team_id")
+    private UUID id;
+    @Column("team_id") @NonNull
     private UUID teamId;
-    @Column("is_active")
-    private boolean isActive;
+    @Column("is_active") @NonNull
+    private Boolean isActive;
+    
 }
