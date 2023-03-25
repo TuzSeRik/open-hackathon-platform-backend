@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.scoring.module.requests;
+package com.github.itmo.ohp.backend.scoring.module.responses;
 
 import lombok.Builder;
 import lombok.Data;

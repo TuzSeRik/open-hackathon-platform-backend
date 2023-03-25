@@ -1,4 +1,4 @@
-package com.github.itmo.ohp.backend.scoring.module;
+package com.github.itmo.ohp.backend.scoring.module.models;
 
 
 import lombok.AllArgsConstructor;

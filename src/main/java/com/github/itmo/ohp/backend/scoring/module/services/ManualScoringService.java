@@ -1,8 +1,8 @@
 package com.github.itmo.ohp.backend.scoring.module.services;
 
-import com.github.itmo.ohp.backend.scoring.module.ManualScoreModel;
-import com.github.itmo.ohp.backend.scoring.module.requests.ManualScoreDTO;
-import com.github.itmo.ohp.backend.scoring.module.ManualScoreRepository;
+import com.github.itmo.ohp.backend.scoring.module.models.ManualScoreModel;
+import com.github.itmo.ohp.backend.scoring.module.responses.ManualScoreDTO;
+import com.github.itmo.ohp.backend.scoring.module.repositories.ManualScoreRepository;
 import com.github.itmo.ohp.backend.scoring.module.requests.ManualScoreRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

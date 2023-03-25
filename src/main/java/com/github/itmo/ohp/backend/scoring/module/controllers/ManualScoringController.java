@@ -1,6 +1,6 @@
-package com.github.itmo.ohp.backend.scoring.module;
+package com.github.itmo.ohp.backend.scoring.module.controllers;
 
-import com.github.itmo.ohp.backend.scoring.module.requests.ManualScoreDTO;
+import com.github.itmo.ohp.backend.scoring.module.responses.ManualScoreDTO;
 import com.github.itmo.ohp.backend.scoring.module.requests.ManualScoreRequest;
 import com.github.itmo.ohp.backend.scoring.module.services.ManualScoringService;
 import lombok.RequiredArgsConstructor;

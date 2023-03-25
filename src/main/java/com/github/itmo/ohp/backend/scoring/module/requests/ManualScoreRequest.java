@@ -1,5 +1,6 @@
 package com.github.itmo.ohp.backend.scoring.module.requests;
 
+import com.github.itmo.ohp.backend.scoring.module.responses.ManualScoreDTO;
 import lombok.Data;
 
 import java.util.ArrayList;
