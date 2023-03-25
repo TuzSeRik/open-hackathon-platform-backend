@@ -36,7 +36,7 @@ public class TaskProblemService {
                     changingTaskProblem.setProblem(taskProblem.getProblem());
                     return taskProblemRepository.save(changingTaskProblem);
                 })
-            .switchIfEmpty(Mono.empty());
+        .switchIfEmpty(Mono.empty());
     }
     
     public Mono<TaskProblemModel> deleteTaskProblem(UUID id) {

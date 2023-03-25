@@ -40,7 +40,7 @@ public class ResultService {
                     changingResult.setAnswer(result.getAnswer());
                     return resultRepository.save(changingResult);
                 })
-            .switchIfEmpty(Mono.empty());
+        .switchIfEmpty(Mono.empty());
     }
     
     public Mono<ResultModel> deleteResult(UUID id) {

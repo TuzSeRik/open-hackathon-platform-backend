@@ -22,7 +22,7 @@ public class TaskController {
                 .map(TaskResponse::fromTaskModel).collectList()
                 .map(AllTasksResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/stage/{stageId}")
@@ -31,7 +31,7 @@ public class TaskController {
                 .map(TaskResponse::fromTaskModel).collectList()
                 .map(AllTasksResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/{id}")
@@ -39,7 +39,7 @@ public class TaskController {
         return taskService.getTaskById(id)
                 .map(TaskResponse::fromTaskModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PostMapping
@@ -47,26 +47,26 @@ public class TaskController {
         TaskModel task = TaskModel.builder()
                 .stageId(request.stageId())
                 .isReady(false)
-                .build();
+        .build();
         
         return taskService.saveTask(task)
                 .map(TaskResponse::fromTaskModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PutMapping("/{id}")
     public Mono<ResponseEntity<TaskResponse>> updateTask(@PathVariable("id") UUID id,
-                                                           @RequestBody UpdateTaskRequest request) {
+                                                         @RequestBody UpdateTaskRequest request) {
         TaskModel task = TaskModel.builder()
                 .stageId(request.stageId())
                 .isReady(request.isReady())
-                .build();
+        .build();
         
         return taskService.updateTask(id, task)
                 .map(TaskResponse::fromTaskModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/{id}")
@@ -74,7 +74,7 @@ public class TaskController {
         return taskService.deleteTask(id)
                 .map(TaskResponse::fromTaskModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping
@@ -83,7 +83,7 @@ public class TaskController {
                 .map(TaskResponse::fromTaskModel).collectList()
                 .map(AllTasksResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/stage/{stageId}")
@@ -92,7 +92,7 @@ public class TaskController {
                 .map(TaskResponse::fromTaskModel).collectList()
                 .map(AllTasksResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
 }

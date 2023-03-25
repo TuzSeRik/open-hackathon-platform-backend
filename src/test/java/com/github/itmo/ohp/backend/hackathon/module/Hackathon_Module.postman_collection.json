@@ -1,0 +1,976 @@
+{
+	"info": {
+		"_postman_id": "52bfb728-f8b8-4606-9f4a-d7f543417fa6",
+		"name": "Hackathon Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10987224"
+	},
+	"item": [
+		{
+			"name": "Hackathon Module Controller",
+			"item": []
+		},
+		{
+			"name": "Hackathon Controller",
+			"item": [
+				{
+					"name": "Get Hackathons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/hackathon/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"hackathon",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hackathon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/hackathon/48c42ffe-1c20-4808-b5b1-317b05b3da09",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"hackathon",
+								"48c42ffe-1c20-4808-b5b1-317b05b3da09"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Hackathon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startTime\": \"2023-01-01T00:00:00+03:00\",\r\n    \"endTime\": \"2024-01-01T00:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Hackathon",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startTime\": \"2023-01-01T00:00:00+03:00\",\r\n    \"endTime\": \"2024-01-01T00:00:00+03:00\",\r\n    \"isReady\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/hackathon/905064d3-0c22-492c-8ebc-953b25de1f4e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"hackathon",
+								"905064d3-0c22-492c-8ebc-953b25de1f4e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hackathon",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/hackathon/48c42ffe-1c20-4808-b5b1-317b05b3da09",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"hackathon",
+								"48c42ffe-1c20-4808-b5b1-317b05b3da09"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hackathons",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/hackathon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"hackathon"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Stage Controller",
+			"item": [
+				{
+					"name": "Create Stage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hackathonId\" : \"48c42ffe-1c20-4808-b5b1-317b05b3da09\",\r\n    \"startTime\": \"2022-12-31T21:00:00Z\",\r\n    \"endTime\": \"2023-12-31T21:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/stage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/stage/4a26db6f-f4fd-4498-8309-8bec29f08df9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage",
+								"4a26db6f-f4fd-4498-8309-8bec29f08df9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/stage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Stage",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hackathonId\": \"905064d3-0c22-492c-8ebc-953b25de1f4e\",\r\n    \"startTime\": \"2023-01-01T00:00:00+03:00\",\r\n    \"endTime\": \"2024-01-01T00:00:00+03:00\",\r\n    \"isReady\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/stage/866c14e1-ad62-420f-ae5d-9323293f58db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage",
+								"866c14e1-ad62-420f-ae5d-9323293f58db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Stage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/stage/f20b3817-0e13-4c52-bb58-8ddc0eb17a7b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage",
+								"f20b3817-0e13-4c52-bb58-8ddc0eb17a7b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Stages",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/stage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"stage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task Controller",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stageId\" : \"c997d5f7-cfac-4a32-b624-6827ecd55cf7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task/ffa086cf-d5c6-498c-a2cd-8998e3ccdec3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"ffa086cf-d5c6-498c-a2cd-8998e3ccdec3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks for Stage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task/stage/c997d5f7-cfac-4a32-b624-6827ecd55cf7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"stage",
+								"c997d5f7-cfac-4a32-b624-6827ecd55cf7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stageId\": \"c997d5f7-cfac-4a32-b624-6827ecd55cf7\",\r\n    \"isReady\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/task/eb56d858-da4a-4c66-b508-15f5817de301",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"eb56d858-da4a-4c66-b508-15f5817de301"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task/eb56d858-da4a-4c66-b508-15f5817de301",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"eb56d858-da4a-4c66-b508-15f5817de301"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tasks",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tasks for Stage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task/stage/c997d5f7-cfac-4a32-b624-6827ecd55cf7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"stage",
+								"c997d5f7-cfac-4a32-b624-6827ecd55cf7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task Problem Controller",
+			"item": [
+				{
+					"name": "Create Task Problem",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskId\" : \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"type\" : \"TEXT\",\r\n    \"problem\" : \"Typical problem\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task Problem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task/ffa086cf-d5c6-498c-a2cd-8998e3ccdec3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task",
+								"ffa086cf-d5c6-498c-a2cd-8998e3ccdec3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task Problems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task Problems for Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem/task/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem",
+								"task",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task Problem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskId\": \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"type\": \"TEXT\",\r\n    \"problem\": \"NOT Typical problem\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task Problem",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task Problems",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task Problems for Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem/task/c997d5f7-cfac-4a32-b624-6827ecd55cf7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem",
+								"task",
+								"c997d5f7-cfac-4a32-b624-6827ecd55cf7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Result Controller",
+			"item": [
+				{
+					"name": "Create Result",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskProblemId\" : \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"teamId\" : \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"answer\" : \"Typical solution\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/result",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Result",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result/ffa086cf-d5c6-498c-a2cd-8998e3ccdec3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"ffa086cf-d5c6-498c-a2cd-8998e3ccdec3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Results for Task Problem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result/task-problem/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"task-problem",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Results for Team",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result/team/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"team",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Result",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskProblemId\" : \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"teamId\" : \"09924c21-8247-4777-91f7-45b705ce2cee\",\r\n    \"answer\" : \"Typical solution\",\r\n    \"isAccepted\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/result/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Result",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/task-problem/495b8d2d-6558-487b-b87c-cebea53075dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"task-problem",
+								"495b8d2d-6558-487b-b87c-cebea53075dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Results",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Results for Task Problem",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result/task-problem/c997d5f7-cfac-4a32-b624-6827ecd55cf7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"task-problem",
+								"c997d5f7-cfac-4a32-b624-6827ecd55cf7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Results for Team",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/result/team/c997d5f7-cfac-4a32-b624-6827ecd55cf7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"result",
+								"team",
+								"c997d5f7-cfac-4a32-b624-6827ecd55cf7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

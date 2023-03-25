@@ -35,7 +35,7 @@ public class TaskService {
                     changingTask.setIsReady(task.getIsReady());
                     return taskRepository.save(changingTask);
                 })
-            .switchIfEmpty(Mono.empty());
+        .switchIfEmpty(Mono.empty());
     }
     
     public Mono<TaskModel> deleteTask(UUID id) {

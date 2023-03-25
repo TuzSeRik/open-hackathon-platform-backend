@@ -22,7 +22,7 @@ public class TaskProblemController {
                 .map(TaskProblemResponse::fromTaskProblemModel).collectList()
                 .map(AllTaskProblemsResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/task/{taskId}")
@@ -31,7 +31,7 @@ public class TaskProblemController {
                 .map(TaskProblemResponse::fromTaskProblemModel).collectList()
                 .map(AllTaskProblemsResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/{id}")
@@ -39,7 +39,7 @@ public class TaskProblemController {
         return taskProblemService.getTaskProblemById(id)
                 .map(TaskProblemResponse::fromTaskProblemModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PostMapping
@@ -48,27 +48,27 @@ public class TaskProblemController {
                 .taskId(request.taskId())
                 .type(request.type())
                 .problem(request.problem())
-                .build();
+        .build();
         
         return taskProblemService.saveTaskProblem(taskProblem)
                 .map(TaskProblemResponse::fromTaskProblemModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PutMapping("/{id}")
     public Mono<ResponseEntity<TaskProblemResponse>> updateTaskProblem(@PathVariable("id") UUID id,
-                                                         @RequestBody UpdateTaskProblemRequest request) {
+                                                                       @RequestBody UpdateTaskProblemRequest request) {
         TaskProblemModel taskProblem = TaskProblemModel.builder()
                 .taskId(request.taskId())
                 .type(request.type())
                 .problem(request.problem())
-                .build();
+        .build();
         
         return taskProblemService.updateTaskProblem(id, taskProblem)
                 .map(TaskProblemResponse::fromTaskProblemModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/{id}")
@@ -76,7 +76,7 @@ public class TaskProblemController {
         return taskProblemService.deleteTaskProblem(id)
                 .map(TaskProblemResponse::fromTaskProblemModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping
@@ -85,7 +85,7 @@ public class TaskProblemController {
                 .map(TaskProblemResponse::fromTaskProblemModel).collectList()
                 .map(AllTaskProblemsResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/task/{taskId}")
@@ -94,7 +94,7 @@ public class TaskProblemController {
                 .map(TaskProblemResponse::fromTaskProblemModel).collectList()
                 .map(AllTaskProblemsResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
 }

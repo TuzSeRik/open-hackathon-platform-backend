@@ -39,7 +39,7 @@ public class HackathonController {
                 .startTime(request.startTime())
                 .endTime(request.endTime())
                 .isReady(false)
-                .build();
+        .build();
         
         return hackathonService.saveHackathon(hackathon)
                 .map(HackathonResponse::fromHackathonModel)
@@ -54,7 +54,7 @@ public class HackathonController {
                 .startTime(request.startTime())
                 .endTime(request.endTime())
                 .isReady(request.isReady())
-                .build();
+        .build();
         
         return hackathonService.updateHackathon(id, hackathon)
                 .map(HackathonResponse::fromHackathonModel)

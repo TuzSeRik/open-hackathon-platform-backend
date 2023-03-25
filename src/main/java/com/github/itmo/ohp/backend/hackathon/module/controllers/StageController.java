@@ -22,7 +22,7 @@ public class StageController {
                 .map(StageResponse::fromStageModel).collectList()
                 .map(AllStagesResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @GetMapping("/{id}")
@@ -30,7 +30,7 @@ public class StageController {
         return stageService.getStageById(id)
                 .map(StageResponse::fromStageModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PostMapping
@@ -40,12 +40,12 @@ public class StageController {
                 .startTime(request.startTime())
                 .endTime(request.endTime())
                 .isReady(false)
-                .build();
+        .build();
         
         return stageService.saveStage(stage)
                 .map(StageResponse::fromStageModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @PutMapping("/{id}")
@@ -55,12 +55,12 @@ public class StageController {
                 .hackathonId(request.hackathonId())
                 .startTime(request.startTime())
                 .endTime(request.endTime())
-                .build();
+        .build();
         
         return stageService.updateStage(id, stage)
                 .map(StageResponse::fromStageModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/{id}")
@@ -68,7 +68,7 @@ public class StageController {
         return stageService.deleteStage(id)
                 .map(StageResponse::fromStageModel)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping
@@ -77,7 +77,7 @@ public class StageController {
                 .map(StageResponse::fromStageModel).collectList()
                 .map(AllStagesResponse::new)
                 .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
 }
