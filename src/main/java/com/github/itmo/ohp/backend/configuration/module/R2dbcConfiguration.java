@@ -48,6 +48,10 @@ public class R2dbcConfiguration {
                 ).getBytes()))
         );
         // Authorization module end
+        
+        // Information module start
+        
+        // Information module end
     
         // Hackathon module start
         ZonedDateTime startTime = LocalDate.of(Year.now().getValue(), Month.JANUARY, 1)

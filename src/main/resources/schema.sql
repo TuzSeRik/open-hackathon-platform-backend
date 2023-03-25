@@ -25,10 +25,11 @@ create table if not exists invites (
 -- Authorization module end
 
 -- Information module start
-create table if not exists info_pages (
+create table if not exists information (
     id             varchar_ignorecase(64) default random_uuid() not null primary key,
-    text           longnvarchar           default ''            not null,
+    data           longnvarchar           default ''            not null,
     is_public      boolean                default false         not null unique
+
 );
 -- Information module end
 

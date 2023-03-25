@@ -26,8 +26,6 @@ public class SecurityConfiguration {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(authorize -> authorize
                     .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
-                    .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
                     
                     // Authorization module start
                     .pathMatchers(HttpMethod.GET, "/api/team/**").permitAll()
@@ -41,10 +39,23 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.DELETE, "/api/user/**").hasAuthority("ROLE_ORG")
                     
                     .pathMatchers(HttpMethod.POST, "/api/organizer/**").hasAuthority("ROLE_ADMIN")
+                    
+                    .pathMatchers(HttpMethod.GET, "/api/invite/**").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/invite/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.PUT, "/api/invite/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.DELETE, "/api/invite/**").hasAuthority("ROLE_ORG")
                     // Authorization module end
                     
                     // Information module start
+                    .pathMatchers(HttpMethod.GET, "/api/actions/information/public").permitAll()
+                    .pathMatchers(HttpMethod.GET, "/api/actions/information/private").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.PUT, "/api/actions/information/public").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.PUT, "/api/actions/information/private").hasAuthority("ROLE_ORG")
                     
+                    .pathMatchers(HttpMethod.GET, "/api/information/**").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/information/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.PUT, "/api/information/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.DELETE, "/api/information/**").hasAuthority("ROLE_ADMIN")
                     // Information module end
                     
                     // Hackathon module start
