@@ -55,7 +55,6 @@ public class StageController {
                 .hackathonId(request.hackathonId())
                 .startTime(request.startTime())
                 .endTime(request.endTime())
-                .isReady(request.isReady())
                 .build();
         
         return stageService.updateStage(id, stage)
@@ -73,7 +72,7 @@ public class StageController {
     }
     
     @DeleteMapping
-    public Mono<ResponseEntity<AllStagesResponse>> deleteStage() {
+    public Mono<ResponseEntity<AllStagesResponse>> deleteAllStages() {
         return stageService.deleteAllStages()
                 .map(StageResponse::fromStageModel).collectList()
                 .map(AllStagesResponse::new)

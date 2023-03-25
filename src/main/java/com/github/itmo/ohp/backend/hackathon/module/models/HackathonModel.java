@@ -16,7 +16,7 @@ public class HackathonModel {
     private ZonedDateTime startTime;
     @Column("end_time") @NonNull
     private ZonedDateTime endTime;
-    @Column("is_ready")
+    @Column("is_ready") @NonNull
     private Boolean isReady;
     
     public Boolean ensureTimeContinuity() {

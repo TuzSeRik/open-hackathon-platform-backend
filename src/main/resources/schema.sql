@@ -48,3 +48,10 @@ create table if not exists stages (
     is_ready     boolean                  default false               not null
 
 );
+
+create table if not exists tasks (
+    id       varchar_ignorecase(64) default random_uuid() not null primary key,
+    stage_id varchar_ignorecase(64) references stages(id) not null,
+    is_ready boolean                default false         not null
+
+);

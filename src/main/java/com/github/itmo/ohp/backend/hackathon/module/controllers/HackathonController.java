@@ -38,6 +38,7 @@ public class HackathonController {
         HackathonModel hackathon = HackathonModel.builder()
                 .startTime(request.startTime())
                 .endTime(request.endTime())
+                .isReady(false)
                 .build();
         
         return hackathonService.saveHackathon(hackathon)
@@ -70,7 +71,7 @@ public class HackathonController {
     }
     
     @DeleteMapping
-    public Mono<ResponseEntity<AllHackathonsResponse>> deleteHackathon() {
+    public Mono<ResponseEntity<AllHackathonsResponse>> deleteAllHackathons() {
         return hackathonService.deleteAllHackathons()
                 .map(HackathonResponse::fromHackathonModel).collectList()
                 .map(AllHackathonsResponse::new)
