@@ -1,14 +1,16 @@
 package com.github.itmo.ohp.backend.authorization.module.responses;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.github.itmo.ohp.backend.authorization.module.models.UserModel;
 import java.util.UUID;
 
-@Data @Builder @AllArgsConstructor @NoArgsConstructor
-public class UserResponse {
-    private UUID id;
-    private String username;
+public record UserResponse(UUID id, UUID teamId, String username, String authorities) {
+    public static UserResponse fromUserModel(UserModel user) {
+        return new UserResponse(
+                user.getId(),
+                user.getTeamId(),
+                user.getUsername(),
+                user.getAuthorities()
+        );
+    }
+    
 }

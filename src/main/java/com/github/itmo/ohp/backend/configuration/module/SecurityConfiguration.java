@@ -26,17 +26,33 @@ public class SecurityConfiguration {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(authorize -> authorize
                     .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                    .pathMatchers("/user/org").hasAuthority("ROLE_ADMIN")
-                    .pathMatchers("/user/**").permitAll()
                     .pathMatchers(HttpMethod.GET, "/information/public").permitAll()
                     .pathMatchers(HttpMethod.POST, "/information/**").hasAuthority("ROLE_ORG")
+                    
+                    // Authorization module start
+                    .pathMatchers(HttpMethod.GET, "/api/team/**").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/team/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.PUT, "/api/team/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.DELETE, "/api/team/**").hasAuthority("ROLE_ORG")
+                    
+                    .pathMatchers(HttpMethod.GET, "/api/user/**").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/user/**").permitAll()
+                    .pathMatchers(HttpMethod.PUT, "/api/user/**").permitAll()
+                    .pathMatchers(HttpMethod.DELETE, "/api/user/**").hasAuthority("ROLE_ORG")
+                    
+                    .pathMatchers(HttpMethod.POST, "/api/organizer/**").hasAuthority("ROLE_ADMIN")
+                    // Authorization module end
+                    
+                    // Information module start
+                    
+                    // Information module end
                     
                     // Hackathon module start
                     .pathMatchers(HttpMethod.GET, "/api/hackathon/**").hasAuthority("ROLE_USER")
                     .pathMatchers(HttpMethod.POST, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
                     .pathMatchers(HttpMethod.PUT, "/api/hackathon/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.DELETE, "/api/hackathon/**").hasAuthority("ROLE_ADMIN")
-        
+                    
                     .pathMatchers(HttpMethod.GET, "/api/stage/**").hasAuthority("ROLE_USER")
                     .pathMatchers(HttpMethod.POST, "/api/stage/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.PUT, "/api/stage/**").hasAuthority("ROLE_ORG")
@@ -51,7 +67,7 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.POST, "/api/task-problem/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.PUT, "/api/task-problem/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.DELETE, "/api/task-problem/**").hasAuthority("ROLE_ORG")
-        
+                    
                     .pathMatchers(HttpMethod.GET, "/api/result/**").hasAuthority("ROLE_USER")
                     .pathMatchers(HttpMethod.POST, "/api/result/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.PUT, "/api/result/**").hasAuthority("ROLE_ORG")

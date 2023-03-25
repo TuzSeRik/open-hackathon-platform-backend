@@ -2,10 +2,10 @@ package com.github.itmo.ohp.backend.authorization.module.repositories;
 
 import com.github.itmo.ohp.backend.authorization.module.models.TeamModel;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
-@Component
+@Repository
 public interface TeamRepository extends ReactiveCrudRepository<TeamModel, UUID> {
+
 }

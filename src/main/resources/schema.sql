@@ -1,17 +1,21 @@
+-- Authorization module start
 create table if not exists teams (
     id     varchar_ignorecase(64)  default random_uuid() not null primary key,
-    name   varchar_ignorecase(64)                        not null unique,
-    github varchar_ignorecase(256)                       not null,
-    info   varchar_ignorecase(512)
+    name   varchar_ignorecase(64)  default ''            not null unique,
+    github varchar_ignorecase(256) default ''            not null,
+    info   varchar_ignorecase(512) default ''            not null
+
 );
 
 create table if not exists users (
     id          varchar_ignorecase(64)  default random_uuid() not null primary key,
+    team_id     varchar_ignorecase(64)  references teams(id)  ,
     username    varchar_ignorecase(64)                        not null unique,
     password    varchar_ignorecase(512)                       not null,
-    authorities varchar_ignorecase(64)  default 'ROLE_USER'   not null,
-    team_id     varchar_ignorecase(64)  references teams(id)
+    authorities varchar_ignorecase(64)  default 'ROLE_USER'   not null
+
 );
+-- Authorization module end
 
 create table if not exists invites (
     id          bigint unsigned         not null auto_increment primary key,

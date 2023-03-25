@@ -1,26 +1,37 @@
 package com.github.itmo.ohp.backend.authorization.module.models;
 
 import com.github.itmo.ohp.backend.configuration.module.SecurityConfiguration;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 import java.util.UUID;
 
-@Table("users") @Data @AllArgsConstructor @NoArgsConstructor
+@Table("users") @Data @Builder
+@AllArgsConstructor @NoArgsConstructor
 public class UserModel {
     @Id
     private UUID id;
-    private String username;
-    private String password;
-    private String authorities;
     @Column("team_id")
     private UUID teamId;
+    @NonNull
+    private String username;
+    @NonNull
+    private String password;
+    @NonNull
+    private String authorities;
     
     public UserModel setPassword(String password) {
-        this.password = SecurityConfiguration.passwordEncoder.encode(password);
+        return setPassword(password, false);
+    }
+    
+    public UserModel setPassword(String password, Boolean shouldEncode) {
+        if (shouldEncode) {
+            this.password = SecurityConfiguration.passwordEncoder.encode(password);
+        }
+        else {
+            this.password = password;
+        }
         
         return this;
     }

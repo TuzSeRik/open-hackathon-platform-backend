@@ -32,7 +32,8 @@ public class R2dbcConfiguration {
         
         // I would strongly encourage you to store queries, that do not require data from app,
         // Inside data.sql
-        
+    
+        // Authorization module start
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                         "insert ignore into teams values ('%s', '%s', '%s', '%s');",
@@ -43,10 +44,12 @@ public class R2dbcConfiguration {
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                         "insert ignore into users values ('%s', '%s', '%s', '%s', '%s');",
-                        UUID.randomUUID(), username, SecurityConfiguration.passwordEncoder.encode(password), "ROLE_USER,ROLE_ORG,ROLE_ADMIN", teamUUID
+                        UUID.randomUUID(), teamUUID, username, SecurityConfiguration.passwordEncoder.encode(password), "ROLE_USER,ROLE_ORG,ROLE_ADMIN"
                 ).getBytes()))
         );
+        // Authorization module end
     
+        // Hackathon module start
         ZonedDateTime startTime = LocalDate.of(Year.now().getValue(), Month.JANUARY, 1)
                 .atStartOfDay()
                 .atZone(ZoneId.systemDefault());
@@ -57,7 +60,6 @@ public class R2dbcConfiguration {
                 .atZone(ZoneId.systemDefault());
         String formattedEndTime = endTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
         
-        // Hackathon module start
         UUID hackathonId = UUID.randomUUID();
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
