@@ -46,6 +46,11 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.POST, "/api/task/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.PUT, "/api/task/**").hasAuthority("ROLE_ORG")
                     .pathMatchers(HttpMethod.DELETE, "/api/task/**").hasAuthority("ROLE_ORG")
+                    
+                    .pathMatchers(HttpMethod.GET, "/api/task-problem/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.POST, "/api/task-problem/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.PUT, "/api/task-problem/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.DELETE, "/api/task-problem/**").hasAuthority("ROLE_ORG")
                     // Hackathon module end
                     
                     .anyExchange().authenticated()

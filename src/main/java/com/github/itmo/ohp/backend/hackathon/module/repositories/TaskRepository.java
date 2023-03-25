@@ -9,5 +9,6 @@ import java.util.UUID;
 @Repository
 public interface TaskRepository extends ReactiveCrudRepository<TaskModel, UUID> {
     Flux<TaskModel> findAllByStageId(UUID stageId);
-    Flux<TaskModel> deleteAllByStageId(UUID stageId);
+    Flux<Void> deleteAllByStageId(UUID stageId);
+    
 }

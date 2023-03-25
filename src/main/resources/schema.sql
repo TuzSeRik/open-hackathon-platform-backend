@@ -55,3 +55,11 @@ create table if not exists tasks (
     is_ready boolean                default false         not null
 
 );
+
+create table if not exists task_problems (
+    id      varchar_ignorecase(64)  default random_uuid() not null primary key,
+    task_id varchar_ignorecase(64)  references tasks(id)  not null,
+    type    varchar_ignorecase(64)  default 'TEXT'        not null,
+    problem varchar_ignorecase(512) default ''            not null
+
+);
