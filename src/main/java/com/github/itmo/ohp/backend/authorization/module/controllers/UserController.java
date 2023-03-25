@@ -27,6 +27,15 @@ public class UserController {
         .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
+    @GetMapping("/team/{teamId}")
+    public Mono<ResponseEntity<AllUsersResponse>> getAllUsersForTeam(@PathVariable("teamId") UUID teamId) {
+        return userService.getAllUsersForTeam(teamId)
+                .map(UserResponse::fromUserModel).collectList()
+                .map(AllUsersResponse::new)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
     @GetMapping("/{id}")
     public Mono<ResponseEntity<UserResponse>> getUser(@AuthenticationPrincipal UserDetails userDetails,
                                                       @PathVariable("id") UUID id) {
@@ -93,4 +102,12 @@ public class UserController {
         .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
+    @DeleteMapping("/team/{teamId}")
+    public Mono<ResponseEntity<AllUsersResponse>> deleteAllUsersForTeam(@PathVariable("teamId") UUID teamId) {
+        return userService.deleteAllUsersForTeam(teamId)
+                .map(UserResponse::fromUserModel).collectList()
+                .map(AllUsersResponse::new)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 }

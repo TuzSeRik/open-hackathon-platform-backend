@@ -16,6 +16,10 @@ public class UserService {
         return userRepository.findAll();
     }
     
+    public Flux<UserModel> getAllUsersForTeam(UUID teamId) {
+        return userRepository.findAllByTeamId(teamId);
+    }
+    
     public Mono<UserModel> getUserById(UUID id) {
         return userRepository.findById(id);
     }
@@ -60,6 +64,12 @@ public class UserService {
         Flux<UserModel> users = userRepository.findAll();
         userRepository.deleteAll();
         return users;
+    }
+    
+    public Flux<UserModel> deleteAllUsersForTeam(UUID teamId) {
+        Flux<UserModel> results = userRepository.findAllByTeamId(teamId);
+        userRepository.deleteAllByTeamId(teamId);
+        return results;
     }
     
 }
