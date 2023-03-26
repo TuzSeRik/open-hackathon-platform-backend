@@ -30,7 +30,7 @@ public class TeamService{
                 .all()
                 .bufferUntilChanged(result -> result.get("teamId"))
                 .map(list -> {
-                        TeamModel.TeamBuilder teamBuilder = TeamModel.builder();
+                        TeamModel.TeamModelBuilder teamBuilder = TeamModel.builder();
                         teamBuilder.id(UUID.fromString(String.valueOf(list.get(0).get("teamId"))));
                         teamBuilder.name(String.valueOf(list.get(0).get("teamName")));
                         teamBuilder.github(String.valueOf(list.get(0).get("teamGithub")));
@@ -53,7 +53,7 @@ public class TeamService{
                 .all()
                 .bufferUntilChanged(result -> result.get("teamId"))
                 .map(list -> {
-                    TeamModel.TeamBuilder teamBuilder = TeamModel.builder();
+                    TeamModel.TeamModelBuilder teamBuilder = TeamModel.builder();
                     teamBuilder.id(UUID.fromString(String.valueOf(list.get(0).get("teamId"))));
                     teamBuilder.name(String.valueOf(list.get(0).get("teamName")));
                     teamBuilder.github(String.valueOf(list.get(0).get("teamGithub")));

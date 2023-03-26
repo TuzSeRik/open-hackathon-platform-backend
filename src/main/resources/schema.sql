@@ -31,3 +31,11 @@ create table if not exists manual_scores (
    team_id     varchar_ignorecase(64)   references teams(id) not null unique,
    comment     varchar_ignorecase(512)
 );
+
+create table if not exists timeline_stages (
+    id               varchar_ignorecase(64) default random_uuid() not null primary key,
+    name             varchar_ignorecase(64)                       not null unique,
+    description      longnvarchar           default ''            not null,
+    start_timestamp  timestamp                                    not null,
+    action_type      varchar_ignorecase(32) default 'NONE'
+);
