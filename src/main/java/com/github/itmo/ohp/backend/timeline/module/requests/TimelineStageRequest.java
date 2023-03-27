@@ -16,10 +16,9 @@ public class TimelineStageRequest {
     private String name;
     private String description;
     private LocalDateTime startTimestamp;
-    private LocalDateTime endTimestamp;
     private StageActionType actionType;
 
     public TimelineStage toTimelineStage(){
-        return new TimelineStage(null, name, description, startTimestamp, endTimestamp, actionType);
+        return new TimelineStage(null, name, description, startTimestamp, actionType);
     }
 }
