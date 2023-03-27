@@ -24,7 +24,7 @@ public class R2dbcConfiguration {
     public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
-
+        
         UUID teamUUID = UUID.randomUUID();
         
         CompositeDatabasePopulator compositeDatabasePopulator = new CompositeDatabasePopulator();
@@ -32,7 +32,7 @@ public class R2dbcConfiguration {
         
         // I would strongly encourage you to store queries, that do not require data from app,
         // Inside data.sql
-    
+        
         // Authorization module start
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
@@ -52,13 +52,13 @@ public class R2dbcConfiguration {
         // Information module start
         
         // Information module end
-    
+        
         // Hackathon module start
         ZonedDateTime startTime = LocalDate.of(Year.now().getValue(), Month.JANUARY, 1)
                 .atStartOfDay()
                 .atZone(ZoneId.systemDefault());
         String formattedStartTime = startTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-    
+        
         ZonedDateTime endTime = LocalDate.of(Year.now().plusYears(1).getValue(), Month.JANUARY, 1)
                 .atStartOfDay()
                 .atZone(ZoneId.systemDefault());
@@ -68,14 +68,17 @@ public class R2dbcConfiguration {
         compositeDatabasePopulator.addPopulators(
                 new ResourceDatabasePopulator(new ByteArrayResource(String.format(
                                 "insert ignore into hackathons values ('%s', '%s', '%s', '%s');",
-                                hackathonId , formattedStartTime, formattedEndTime, false)
-                    .getBytes())
-                )
+                                hackathonId , formattedStartTime, formattedEndTime, false
+                ).getBytes()))
         );
         // Hackathon module end
         
+        // Scoring module start
+        
+        // Scoring module end
+        
         compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
-
+        
         initializer.setDatabasePopulator(compositeDatabasePopulator);
         
         return initializer;

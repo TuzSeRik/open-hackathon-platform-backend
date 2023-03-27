@@ -85,6 +85,13 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.DELETE, "/api/result/**").hasAuthority("ROLE_ORG")
                     // Hackathon module end
                     
+                    // Scoring module start
+                    .pathMatchers(HttpMethod.GET, "/api/score/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.POST, "/api/score/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.PUT, "/api/score/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.DELETE, "/api/score/**").hasAuthority("ROLE_ORG")
+                    // Scoring module end
+                    
                     .anyExchange().authenticated()
             ).httpBasic(Customizer.withDefaults());
         
