@@ -33,13 +33,7 @@ create table if not exists information (
 );
 -- Information module end
 
-create table if not exists manual_scores (
-   id          int                      auto_increment primary key,
-   place       int                      not null,
-   team_id     varchar_ignorecase(64)   references teams(id) not null unique,
-   comment     varchar_ignorecase(512)
-);
-
+-- Hackathon module start
 create table if not exists hackathons (
     id         varchar_ignorecase(64)   default random_uuid()       not null primary key,
     start_time timestamp with time zone default current_timestamp() not null,
@@ -80,3 +74,14 @@ create table if not exists results (
     is_accepted     boolean                 default false                not null
 
 );
+-- Hackathon module end
+
+-- Scoring module start
+create table if not exists scores (
+   id      varchar_ignorecase(64)  default random_uuid() not null primary key,
+   team_id varchar_ignorecase(64)  references teams(id)  not null,
+   score   integer                 default 0             not null,
+   comment varchar_ignorecase(512) default ''            not null
+
+);
+-- Scoring module end
