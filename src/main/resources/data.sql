@@ -12,6 +12,7 @@ insert ignore into timeline_stages values
     'Registration',
     'Participant and team registrations are open. Once this stage ends, you will no longer be able to enter the competition.',
     '2023-03-01 00:00:00',
+    '2023-03-10 00:00:00',
     'BLOCK_REGISTRATION'
 ),
 (
@@ -19,6 +20,7 @@ insert ignore into timeline_stages values
     'Development',
     'The main stage of the competition. Once this stage ends, you will no longer be able to submit your solution.',
     '2023-03-10 00:00:00',
+    '2023-03-13 00:00:00',
     'BLOCK_GITHUB_SUBMISSION'
 ),
 (
@@ -26,6 +28,7 @@ insert ignore into timeline_stages values
     'Presentation',
     'The final stage of the competition where you present your solution. Once this stage ends, the results will be revealed.',
     '2023-03-13 00:00:00',
+    '2023-05-20 00:00:00',
     'SHOW_RESULTS'
 )
 

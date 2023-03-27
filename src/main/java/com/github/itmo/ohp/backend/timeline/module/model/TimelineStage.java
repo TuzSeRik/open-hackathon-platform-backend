@@ -18,5 +18,6 @@ public class TimelineStage {
     private String name;
     private String description;
     private LocalDateTime startTimestamp;
+    private LocalDateTime endTimestamp;
     private StageActionType actionType;
 }

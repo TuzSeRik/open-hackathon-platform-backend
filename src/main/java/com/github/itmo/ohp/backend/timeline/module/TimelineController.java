@@ -22,6 +22,13 @@ public class TimelineController {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping("/current")
+    public Mono<ResponseEntity<TimelineStage>> getCurrentStage() {
+        Mono<TimelineStage> stage = timelineService.getCurrentStage();
+        return stage.map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/{id}")
     public Mono<ResponseEntity<TimelineStage>> getStage(@PathVariable UUID id) {
         Mono<TimelineStage> stage = timelineService.getStage(id);

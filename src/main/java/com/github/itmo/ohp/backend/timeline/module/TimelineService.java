@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -18,7 +19,7 @@ public class TimelineService {
     private final TimelineStageRepository stageRepository;
 
     public Flux<TimelineStage> getAllStages(){
-        return stageRepository.findAll();
+        return stageRepository.findAllByOrderByStartTimestampAsc();
     }
 
     public Mono<TimelineStage> getStage(UUID id){
@@ -39,5 +40,15 @@ public class TimelineService {
 
     public Mono<Void> deleteStage(UUID id){
         return stageRepository.deleteById(id);
+    }
+
+    public Mono<TimelineStage> getCurrentStage(){
+        LocalDateTime currentTime = LocalDateTime.now();
+        return getAllStages().filter(obj -> {
+                    LocalDateTime start = obj.getStartTimestamp();
+                    LocalDateTime end = obj.getEndTimestamp();
+                    return currentTime.isEqual(start) || currentTime.isEqual(end) ||
+                            (currentTime.isAfter(start) && currentTime.isBefore(end));
+                }).next();
     }
 }

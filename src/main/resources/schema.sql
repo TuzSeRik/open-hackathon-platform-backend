@@ -37,5 +37,6 @@ create table if not exists timeline_stages (
     name             varchar_ignorecase(64)                       not null unique,
     description      longnvarchar           default ''            not null,
     start_timestamp  timestamp                                    not null,
+    end_timestamp    timestamp,
     action_type      varchar_ignorecase(32) default 'NONE'
 );
