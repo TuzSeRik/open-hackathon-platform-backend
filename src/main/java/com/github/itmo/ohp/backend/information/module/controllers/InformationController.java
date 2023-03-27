@@ -1,60 +1,80 @@
 package com.github.itmo.ohp.backend.information.module.controllers;
 
-import com.github.itmo.ohp.backend.information.module.InformationChangeRequest;
-import com.github.itmo.ohp.backend.information.module.InformationResponse;
+import com.github.itmo.ohp.backend.information.module.models.InformationModel;
+import com.github.itmo.ohp.backend.information.module.requests.CreateInformationRequest;
+import com.github.itmo.ohp.backend.information.module.requests.UpdateInformationRequest;
+import com.github.itmo.ohp.backend.information.module.responses.AllInformationResponse;
+import com.github.itmo.ohp.backend.information.module.responses.InformationResponse;
 import com.github.itmo.ohp.backend.information.module.services.InformationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
-@RestController @RequestMapping("/information") @RequiredArgsConstructor
+@RestController @RequestMapping("/api/information") @RequiredArgsConstructor
 public class InformationController {
     private final InformationService informationService;
     
-    @PostMapping("/public")
-    public Mono<ResponseEntity<InformationResponse>> setPublicInfoPage(@RequestBody InformationChangeRequest request) {
-        return informationService.updatePublicPage(request.getData())
-                .map(p -> new ResponseEntity<>(
-                      new InformationResponse()
-                              .setId(p.getId())
-                              .setData(p.getText()),
-                      HttpStatus.OK
-                ));
+    @GetMapping
+    public Mono<ResponseEntity<AllInformationResponse>> getAllInformation() {
+        return informationService.getAllInformation()
+                .map(InformationResponse::fromInformationModel).collectList()
+                .map(AllInformationResponse::new)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
-    @GetMapping("/public")
-    public Mono<ResponseEntity<InformationResponse>> getPublicInfoPage() {
-        return informationService.getPublicPage().map(
-          p -> new ResponseEntity<>(
-                  new InformationResponse()
-                      .setId(p.getId())
-                      .setData(p.getText()),
-                  HttpStatus.OK)
-        );
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<InformationResponse>> getInformation(@PathVariable("id") UUID id) {
+        return informationService.getInformationById(id)
+                .map(InformationResponse::fromInformationModel)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
-    @PostMapping("/private")
-    public Mono<ResponseEntity<InformationResponse>> setPrivateInfoPage(@RequestBody InformationChangeRequest request) {
-        return informationService.updatePrivatePage(request.getData())
-                .map(p -> new ResponseEntity<>(
-                        new InformationResponse()
-                                .setId(p.getId())
-                                .setData(p.getText()),
-                        HttpStatus.OK
-                ));
+    @PostMapping
+    public Mono<ResponseEntity<InformationResponse>> createInformation(@RequestBody CreateInformationRequest request) {
+        InformationModel information = InformationModel.builder()
+                .data(request.data())
+                .isPublic(request.isPublic())
+        .build();
+        
+        return informationService.saveInformation(information)
+                .map(InformationResponse::fromInformationModel)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
-    @GetMapping("/private")
-    public Mono<ResponseEntity<InformationResponse>> getPrivateInfoPage() {
-        return informationService.getPrivatePage().map(
-                p -> new ResponseEntity<>(
-                        new InformationResponse()
-                                .setId(p.getId())
-                                .setData(p.getText()),
-                        HttpStatus.OK)
-        );
+    @PutMapping("/{id}")
+    public Mono<ResponseEntity<InformationResponse>> updateInformation(@PathVariable("id") UUID id,
+                                                                       @RequestBody UpdateInformationRequest request) {
+        InformationModel information = InformationModel.builder()
+                .data(request.data())
+                .isPublic(request.isPublic())
+        .build();
+        
+        return informationService.updateInformation(id, information)
+                .map(InformationResponse::fromInformationModel)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping("/{id}")
+    public Mono<ResponseEntity<InformationResponse>> deleteInformation(@PathVariable("id") UUID id) {
+        return informationService.deleteInformation(id)
+                .map(InformationResponse::fromInformationModel)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping
+    public Mono<ResponseEntity<AllInformationResponse>> deleteAllInformation() {
+        return informationService.deleteAllInformation()
+                .map(InformationResponse::fromInformationModel).collectList()
+                .map(AllInformationResponse::new)
+                .map(ResponseEntity::ok)
+        .defaultIfEmpty(ResponseEntity.notFound().build());
     }
     
 }

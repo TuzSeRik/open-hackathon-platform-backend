@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "24333662-0309-44d6-9089-19cfd6c1d2a0",
+		"name": "Information Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10987224"
+	},
+	"item": [
+		{
+			"name": "Information Module Controller",
+			"item": [
+				{
+					"name": "Get Public Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/actions/information/public",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"actions",
+								"information",
+								"public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Private Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/actions/information/private",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"actions",
+								"information",
+								"private"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Public Information",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\" : \"[{'type': 'header','data': {'text': 'This is the best public hackathon ever created!','level': 2}}]\",\r\n    \"isPublic\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/actions/information/public",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"actions",
+								"information",
+								"public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Private Information",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\" : \"[{'type': 'header','data': {'text': 'This is the best private hackathon ever created!','level': 2}}]\",\r\n    \"isPublic\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/actions/information/private",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"actions",
+								"information",
+								"private"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Information Controller",
+			"item": [
+				{
+					"name": "Create Information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\" : \"{}\",\r\n    \"isPublic\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/information",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/information/c894076c-f5e9-425a-80e5-944dbf1eceef",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information",
+								"c894076c-f5e9-425a-80e5-944dbf1eceef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/information",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Information",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\" : \"{}\",\r\n    \"isPublic\" : false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/information/c894076c-f5e9-425a-80e5-944dbf1eceef",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information",
+								"c894076c-f5e9-425a-80e5-944dbf1eceef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Information",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/information/2c899173-e0f4-457f-bc51-c5f635ced53d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information",
+								"2c899173-e0f4-457f-bc51-c5f635ced53d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Information",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/information",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"information"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

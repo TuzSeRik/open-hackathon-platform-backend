@@ -1,1 +1,1 @@
-# itmo-ohp-backend
+# open-hackathon-platform-backend

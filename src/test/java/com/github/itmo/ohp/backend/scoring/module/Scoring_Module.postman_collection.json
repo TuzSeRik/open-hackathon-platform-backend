@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "3a8ef1f1-9de3-43ba-ab37-2f4622245002",
+		"name": "Scoring Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10987224"
+	},
+	"item": [
+		{
+			"name": "Scoring Module Controller",
+			"item": []
+		},
+		{
+			"name": "Score Controller",
+			"item": [
+				{
+					"name": "Create Score",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teamId\" : \"69d21940-307c-4131-8e03-75770b9a0695\",\r\n    \"score\" : 3,\r\n    \"comment\" : \"Super!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Score",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score/10d2d92c-13c9-46d8-85cd-2239c0692af5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score",
+								"10d2d92c-13c9-46d8-85cd-2239c0692af5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Scores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Scores for Team",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score/team/69d21940-307c-4131-8e03-75770b9a0695",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score",
+								"team",
+								"69d21940-307c-4131-8e03-75770b9a0695"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Score",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teamId\" : \"69d21940-307c-4131-8e03-75770b9a0695\",\r\n    \"score\" : 999,\r\n    \"comment\" : \"Super Duper!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/score/10d2d92c-13c9-46d8-85cd-2239c0692af5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score",
+								"10d2d92c-13c9-46d8-85cd-2239c0692af5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Score",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score/10d2d92c-13c9-46d8-85cd-2239c0692af5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score",
+								"10d2d92c-13c9-46d8-85cd-2239c0692af5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Scores",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Scores for Team",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/score/team/69d21940-307c-4131-8e03-75770b9a0695",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"score",
+								"team",
+								"69d21940-307c-4131-8e03-75770b9a0695"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -4,9 +4,6 @@
 server:
   port: 20380
 
-storage:
-  path: ./
-
 spring:
   r2dbc:
     url: r2dbc:h2:file:///./database;MODE=MySQL

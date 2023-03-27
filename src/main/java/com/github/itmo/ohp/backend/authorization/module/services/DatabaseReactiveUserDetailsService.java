@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 
 @Service @RequiredArgsConstructor
 public class DatabaseReactiveUserDetailsService implements ReactiveUserDetailsService {
-    private final AuthorizationService authorizationService;
+    private final UserService userService;
     
     @Override
     public Mono<UserDetails> findByUsername(String username) {
-        return authorizationService.findUser(username).flatMap(user -> Mono.just(
+        return userService.getUserByUsername(username).flatMap(user -> Mono.just(
             new User(
                 user.getUsername(),
                 user.getPassword(),
