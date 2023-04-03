@@ -28,17 +28,18 @@ public class SecurityConfiguration {
                     .pathMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                     
                     // Authorization module start
-                    .pathMatchers(HttpMethod.GET, "/api/team/**").permitAll()
-                    .pathMatchers(HttpMethod.POST, "/api/team/**").hasAuthority("ROLE_USER")
-                    .pathMatchers(HttpMethod.PUT, "/api/team/**").hasAuthority("ROLE_USER")
-                    .pathMatchers(HttpMethod.DELETE, "/api/team/**").hasAuthority("ROLE_ORG")
+                    .pathMatchers(HttpMethod.POST, "/api/actions/authorization/user").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/actions/authorization/organizer").hasAuthority("ROLE_ADMIN")
                     
                     .pathMatchers(HttpMethod.GET, "/api/user/**").permitAll()
                     .pathMatchers(HttpMethod.POST, "/api/user/**").permitAll()
                     .pathMatchers(HttpMethod.PUT, "/api/user/**").permitAll()
                     .pathMatchers(HttpMethod.DELETE, "/api/user/**").hasAuthority("ROLE_ORG")
                     
-                    .pathMatchers(HttpMethod.POST, "/api/organizer/**").hasAuthority("ROLE_ADMIN")
+                    .pathMatchers(HttpMethod.GET, "/api/team/**").permitAll()
+                    .pathMatchers(HttpMethod.POST, "/api/team/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.PUT, "/api/team/**").hasAuthority("ROLE_USER")
+                    .pathMatchers(HttpMethod.DELETE, "/api/team/**").hasAuthority("ROLE_ORG")
                     
                     .pathMatchers(HttpMethod.GET, "/api/invite/**").permitAll()
                     .pathMatchers(HttpMethod.POST, "/api/invite/**").hasAuthority("ROLE_USER")

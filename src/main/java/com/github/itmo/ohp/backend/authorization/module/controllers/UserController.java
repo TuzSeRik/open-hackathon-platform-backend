@@ -63,7 +63,7 @@ public class UserController {
                 .authorities(request.authorities())
         .build();
         
-        return userService.saveUserAsUser(user)
+        return userService.saveUser(user)
                 .map(UserResponse::fromUserModel)
                 .map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.notFound().build());

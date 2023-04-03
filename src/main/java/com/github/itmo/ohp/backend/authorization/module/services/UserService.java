@@ -29,16 +29,19 @@ public class UserService {
     }
     
     public Mono<UserModel> saveUser(UserModel user) {
+        user.encodePassword();
         return userRepository.save(user);
     }
     
-    public Mono<UserModel> saveUserAsUser(UserModel user) {
+    public Mono<UserModel> createUser(UserModel user) {
         user.setAuthorities("ROLE_USER");
+        user.encodePassword();
         return userRepository.save(user);
     }
     
-    public Mono<UserModel> saveUserAsOrganizer(UserModel user) {
+    public Mono<UserModel> createOrganizer(UserModel user) {
         user.setAuthorities("ROLE_USER,ROLE_ORG");
+        user.encodePassword();
         return userRepository.save(user);
     }
     
