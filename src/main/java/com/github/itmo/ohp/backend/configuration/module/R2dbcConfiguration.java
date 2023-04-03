@@ -25,7 +25,7 @@ public class R2dbcConfiguration {
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
         
-        UUID teamUUID = UUID.randomUUID();
+        UUID teamUUID = new UUID(0L, 0L);
         
         CompositeDatabasePopulator compositeDatabasePopulator = new CompositeDatabasePopulator();
         compositeDatabasePopulator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));

@@ -21,13 +21,17 @@ public class UserModel {
     @NonNull
     private String authorities;
     
+    public void encodePassword() {
+        this.password = SecurityConfiguration.passwordEncoder.encode(this.password);
+    }
+    
     public UserModel setPassword(String password) {
         return setPassword(password, false);
     }
     
     public UserModel setPassword(String password, Boolean shouldEncode) {
         if (shouldEncode) {
-            this.password = SecurityConfiguration.passwordEncoder.encode(password);
+            encodePassword();
         }
         else {
             this.password = password;
