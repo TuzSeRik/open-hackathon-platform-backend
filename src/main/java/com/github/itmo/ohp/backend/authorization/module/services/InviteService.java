@@ -40,20 +40,17 @@ public class InviteService {
     
     public Mono<InviteModel> deleteInvite(UUID id) {
         Mono<InviteModel> invite = inviteRepository.findById(id);
-        inviteRepository.deleteById(id);
-        return invite;
+        return inviteRepository.deleteById(id).then(invite);
     }
     
     public Flux<InviteModel> deleteAllInvites() {
         Flux<InviteModel> invites = inviteRepository.findAll();
-        inviteRepository.deleteAll();
-        return invites;
+        return inviteRepository.deleteAll().thenMany(invites);
     }
     
     public Flux<InviteModel> deleteAllInvitesForTeam(UUID teamId) {
         Flux<InviteModel> results = inviteRepository.findAllByTeamId(teamId);
-        inviteRepository.deleteAllByTeamId(teamId);
-        return results;
+        return inviteRepository.deleteAllByTeamId(teamId).thenMany(results);
     }
     
 }

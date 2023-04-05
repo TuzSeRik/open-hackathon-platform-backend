@@ -41,14 +41,12 @@ public class StageService {
     
     public Mono<StageModel> deleteStage(UUID id) {
         Mono<StageModel> stage = stageRepository.findById(id);
-        stageRepository.deleteById(id);
-        return stage;
+        return stageRepository.deleteById(id).then(stage);
     }
     
     public Flux<StageModel> deleteAllStages() {
         Flux<StageModel> stages = stageRepository.findAll();
-        stageRepository.deleteAll();
-        return stages;
+        return stageRepository.deleteAll().thenMany(stages);
     }
     
 }

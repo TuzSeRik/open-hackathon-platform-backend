@@ -40,21 +40,18 @@ public class TaskService {
     
     public Mono<TaskModel> deleteTask(UUID id) {
         Mono<TaskModel> task = taskRepository.findById(id);
-        taskRepository.deleteById(id);
-        return task;
+        return taskRepository.deleteById(id).then(task);
     }
     
     public Flux<TaskModel> deleteAllTasks() {
         Flux<TaskModel> tasks = taskRepository.findAll();
-        taskRepository.deleteAll();
-        return tasks;
+        return taskRepository.deleteAll().thenMany(tasks);
     }
     
     
     public Flux<TaskModel> deleteAllTasksForStage(UUID stageId) {
         Flux<TaskModel> tasks = taskRepository.findAllByStageId(stageId);
-        taskRepository.deleteAllByStageId(stageId);
-        return tasks;
+        return taskRepository.deleteAllByStageId(stageId).thenMany(tasks);
     }
     
 }
