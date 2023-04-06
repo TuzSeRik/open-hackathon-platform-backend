@@ -41,14 +41,12 @@ public class HackathonService {
     
     public Mono<HackathonModel> deleteHackathon(UUID id) {
         Mono<HackathonModel> hackathon = hackathonRepository.findById(id);
-        hackathonRepository.deleteById(id);
-        return hackathon;
+        return hackathonRepository.deleteById(id).then(hackathon);
     }
     
     public Flux<HackathonModel> deleteAllHackathons() {
         Flux<HackathonModel> hackathons = hackathonRepository.findAll();
-        hackathonRepository.deleteAll();
-        return hackathons;
+        return hackathonRepository.deleteAll().thenMany(hackathons);
     }
     
 }

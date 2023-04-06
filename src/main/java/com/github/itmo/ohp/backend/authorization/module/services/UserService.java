@@ -59,20 +59,17 @@ public class UserService {
     
     public Mono<UserModel> deleteUser(UUID id) {
         Mono<UserModel> user = userRepository.findById(id);
-        userRepository.deleteById(id);
-        return user;
+        return userRepository.deleteById(id).then(user);
     }
     
     public Flux<UserModel> deleteAllUsers() {
         Flux<UserModel> users = userRepository.findAll();
-        userRepository.deleteAll();
-        return users;
+        return userRepository.deleteAll().thenMany(users);
     }
     
     public Flux<UserModel> deleteAllUsersForTeam(UUID teamId) {
         Flux<UserModel> results = userRepository.findAllByTeamId(teamId);
-        userRepository.deleteAllByTeamId(teamId);
-        return results;
+        return userRepository.deleteAllByTeamId(teamId).thenMany(results);
     }
     
 }

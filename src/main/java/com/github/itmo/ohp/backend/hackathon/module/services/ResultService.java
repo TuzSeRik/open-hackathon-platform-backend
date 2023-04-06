@@ -38,6 +38,7 @@ public class ResultService {
                     changingResult.setTaskProblemId(result.getTaskProblemId());
                     changingResult.setTeamId(result.getTeamId());
                     changingResult.setAnswer(result.getAnswer());
+                    changingResult.setIsAccepted(result.getIsAccepted());
                     return resultRepository.save(changingResult);
                 })
         .switchIfEmpty(Mono.empty());
@@ -45,26 +46,22 @@ public class ResultService {
     
     public Mono<ResultModel> deleteResult(UUID id) {
         Mono<ResultModel> result = resultRepository.findById(id);
-        resultRepository.deleteById(id);
-        return result;
+        return resultRepository.deleteById(id).then(result);
     }
     
     public Flux<ResultModel> deleteAllResults() {
         Flux<ResultModel> results = resultRepository.findAll();
-        resultRepository.deleteAll();
-        return results;
+        return resultRepository.deleteAll().thenMany(results);
     }
     
     public Flux<ResultModel> deleteAllResultsForTaskProblem(UUID taskProblemId) {
         Flux<ResultModel> results = resultRepository.findAllByTaskProblemId(taskProblemId);
-        resultRepository.deleteAllByTaskProblemId(taskProblemId);
-        return results;
+        return resultRepository.deleteAllByTaskProblemId(taskProblemId).thenMany(results);
     }
     
     public Flux<ResultModel> deleteAllResultsForTeam(UUID teamId) {
         Flux<ResultModel> results = resultRepository.findAllByTeamId(teamId);
-        resultRepository.deleteAllByTeamId(teamId);
-        return results;
+        return resultRepository.deleteAllByTeamId(teamId).thenMany(results);
     }
     
 }
