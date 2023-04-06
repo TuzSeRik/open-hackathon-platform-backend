@@ -40,13 +40,17 @@ public class HackathonService {
     }
     
     public Mono<HackathonModel> deleteHackathon(UUID id) {
-        Mono<HackathonModel> hackathon = hackathonRepository.findById(id);
-        return hackathonRepository.deleteById(id).then(hackathon);
+        return hackathonRepository
+                .findById(id)
+                .flatMap(hackathon -> hackathonRepository.deleteById(hackathon.getId()).thenReturn(hackathon));
     }
     
     public Flux<HackathonModel> deleteAllHackathons() {
-        Flux<HackathonModel> hackathons = hackathonRepository.findAll();
-        return hackathonRepository.deleteAll().thenMany(hackathons);
+        return hackathonRepository
+                .findAll()
+                .collectList()
+                .flatMap((hackathons) -> hackathonRepository.deleteAll().thenReturn(hackathons))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

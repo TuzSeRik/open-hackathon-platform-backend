@@ -36,13 +36,17 @@ public class TeamService{
     }
     
     public Mono<TeamModel> deleteTeam(UUID id) {
-        Mono<TeamModel> team = teamRepository.findById(id);
-        return teamRepository.deleteById(id).then(team);
+        return teamRepository
+                .findById(id)
+                .flatMap(team -> teamRepository.deleteById(team.getId()).thenReturn(team));
     }
     
     public Flux<TeamModel> deleteAllTeams() {
-        Flux<TeamModel> teams = teamRepository.findAll();
-        return teamRepository.deleteAll().thenMany(teams);
+        return teamRepository
+                .findAll()
+                .collectList()
+                .flatMap((teams) -> teamRepository.deleteAll().thenReturn(teams))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

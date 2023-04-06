@@ -40,18 +40,25 @@ public class ScoreService {
     }
     
     public Mono<ScoreModel> deleteScore(UUID id) {
-        Mono<ScoreModel> score = scoreRepository.findById(id);
-        return scoreRepository.deleteById(id).then(score);
+        return scoreRepository
+                .findById(id)
+                .flatMap(score -> scoreRepository.deleteById(score.getId()).thenReturn(score));
     }
     
     public Flux<ScoreModel> deleteAllScores() {
-        Flux<ScoreModel> scores = scoreRepository.findAll();
-        return scoreRepository.deleteAll().thenMany(scores);
+        return scoreRepository
+                .findAll()
+                .collectList()
+                .flatMap((scores) -> scoreRepository.deleteAll().thenReturn(scores))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<ScoreModel> deleteAllScoresForTeam(UUID teamId) {
-        Flux<ScoreModel> results = scoreRepository.findAllByTeamId(teamId);
-        return scoreRepository.deleteAllByTeamId(teamId).thenMany(results);
+        return scoreRepository
+                .findAllByTeamId(teamId)
+                .collectList()
+                .flatMap((scores) -> scoreRepository.deleteAllByTeamId(teamId).thenReturn(scores))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

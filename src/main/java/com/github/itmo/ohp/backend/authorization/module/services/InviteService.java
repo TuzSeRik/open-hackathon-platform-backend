@@ -39,18 +39,25 @@ public class InviteService {
     }
     
     public Mono<InviteModel> deleteInvite(UUID id) {
-        Mono<InviteModel> invite = inviteRepository.findById(id);
-        return inviteRepository.deleteById(id).then(invite);
+        return inviteRepository
+                .findById(id)
+                .flatMap(invite -> inviteRepository.deleteById(invite.getId()).thenReturn(invite));
     }
     
     public Flux<InviteModel> deleteAllInvites() {
-        Flux<InviteModel> invites = inviteRepository.findAll();
-        return inviteRepository.deleteAll().thenMany(invites);
+        return inviteRepository
+                .findAll()
+                .collectList()
+                .flatMap((invites) -> inviteRepository.deleteAll().thenReturn(invites))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<InviteModel> deleteAllInvitesForTeam(UUID teamId) {
-        Flux<InviteModel> results = inviteRepository.findAllByTeamId(teamId);
-        return inviteRepository.deleteAllByTeamId(teamId).thenMany(results);
+        return inviteRepository
+                .findAllByTeamId(teamId)
+                .collectList()
+                .flatMap((invites) -> inviteRepository.deleteAllByTeamId(teamId).thenReturn(invites))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }
