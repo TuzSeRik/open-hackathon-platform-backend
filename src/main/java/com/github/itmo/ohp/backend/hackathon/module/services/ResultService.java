@@ -45,23 +45,33 @@ public class ResultService {
     }
     
     public Mono<ResultModel> deleteResult(UUID id) {
-        Mono<ResultModel> result = resultRepository.findById(id);
-        return resultRepository.deleteById(id).then(result);
+        return resultRepository
+                .findById(id)
+                .flatMap(result -> resultRepository.deleteById(result.getId()).thenReturn(result));
     }
     
     public Flux<ResultModel> deleteAllResults() {
-        Flux<ResultModel> results = resultRepository.findAll();
-        return resultRepository.deleteAll().thenMany(results);
+        return resultRepository
+                .findAll()
+                .collectList()
+                .flatMap((results) -> resultRepository.deleteAll().thenReturn(results))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<ResultModel> deleteAllResultsForTaskProblem(UUID taskProblemId) {
-        Flux<ResultModel> results = resultRepository.findAllByTaskProblemId(taskProblemId);
-        return resultRepository.deleteAllByTaskProblemId(taskProblemId).thenMany(results);
+        return resultRepository
+                .findAllByTaskProblemId(taskProblemId)
+                .collectList()
+                .flatMap((results) -> resultRepository.deleteAllByTaskProblemId(taskProblemId).thenReturn(results))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<ResultModel> deleteAllResultsForTeam(UUID teamId) {
-        Flux<ResultModel> results = resultRepository.findAllByTeamId(teamId);
-        return resultRepository.deleteAllByTeamId(teamId).thenMany(results);
+        return resultRepository
+                .findAllByTeamId(teamId)
+                .collectList()
+                .flatMap((results) -> resultRepository.deleteAllByTeamId(teamId).thenReturn(results))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

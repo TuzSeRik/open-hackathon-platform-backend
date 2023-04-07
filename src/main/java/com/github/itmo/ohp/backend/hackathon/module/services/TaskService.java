@@ -39,19 +39,26 @@ public class TaskService {
     }
     
     public Mono<TaskModel> deleteTask(UUID id) {
-        Mono<TaskModel> task = taskRepository.findById(id);
-        return taskRepository.deleteById(id).then(task);
+        return taskRepository
+                .findById(id)
+                .flatMap(task -> taskRepository.deleteById(task.getId()).thenReturn(task));
     }
     
     public Flux<TaskModel> deleteAllTasks() {
-        Flux<TaskModel> tasks = taskRepository.findAll();
-        return taskRepository.deleteAll().thenMany(tasks);
+        return taskRepository
+                .findAll()
+                .collectList()
+                .flatMap((tasks) -> taskRepository.deleteAll().thenReturn(tasks))
+                .flatMapMany(Flux::fromIterable);
     }
     
     
     public Flux<TaskModel> deleteAllTasksForStage(UUID stageId) {
-        Flux<TaskModel> tasks = taskRepository.findAllByStageId(stageId);
-        return taskRepository.deleteAllByStageId(stageId).thenMany(tasks);
+        return taskRepository
+                .findAllByStageId(stageId)
+                .collectList()
+                .flatMap((tasks) -> taskRepository.deleteAllByStageId(stageId).thenReturn(tasks))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

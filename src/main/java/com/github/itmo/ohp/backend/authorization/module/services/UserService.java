@@ -58,18 +58,24 @@ public class UserService {
     }
     
     public Mono<UserModel> deleteUser(UUID id) {
-        Mono<UserModel> user = userRepository.findById(id);
-        return userRepository.deleteById(id).then(user);
+        return userRepository
+                .findById(id)
+                .flatMap(user -> userRepository.deleteById(user.getId()).thenReturn(user));
     }
     
     public Flux<UserModel> deleteAllUsers() {
-        Flux<UserModel> users = userRepository.findAll();
-        return userRepository.deleteAll().thenMany(users);
+        return userRepository
+                .findAll()
+                .collectList()
+                .flatMap((users) -> userRepository.deleteAll().thenReturn(users))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<UserModel> deleteAllUsersForTeam(UUID teamId) {
-        Flux<UserModel> results = userRepository.findAllByTeamId(teamId);
-        return userRepository.deleteAllByTeamId(teamId).thenMany(results);
+        return userRepository.findAll()
+                .collectList()
+                .flatMap((users) -> userRepository.deleteAllByTeamId(teamId).thenReturn(users))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

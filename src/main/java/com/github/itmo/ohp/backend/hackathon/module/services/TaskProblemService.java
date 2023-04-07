@@ -40,18 +40,25 @@ public class TaskProblemService {
     }
     
     public Mono<TaskProblemModel> deleteTaskProblem(UUID id) {
-        Mono<TaskProblemModel> taskProblem = taskProblemRepository.findById(id);
-        return taskProblemRepository.deleteById(id).then(taskProblem);
+        return taskProblemRepository
+                .findById(id)
+                .flatMap(taskProblem -> taskProblemRepository.deleteById(taskProblem.getId()).thenReturn(taskProblem));
     }
     
     public Flux<TaskProblemModel> deleteAllTaskProblems() {
-        Flux<TaskProblemModel> taskProblems = taskProblemRepository.findAll();
-        return taskProblemRepository.deleteAll().thenMany(taskProblems);
+        return taskProblemRepository
+                .findAll()
+                .collectList()
+                .flatMap((taskProblems) -> taskProblemRepository.deleteAll().thenReturn(taskProblems))
+                .flatMapMany(Flux::fromIterable);
     }
     
     public Flux<TaskProblemModel> deleteAllTaskProblemsForTask(UUID taskId) {
-        Flux<TaskProblemModel> taskProblems = taskProblemRepository.findAllByTaskId(taskId);
-        return taskProblemRepository.deleteAllByTaskId(taskId).thenMany(taskProblems);
+        return taskProblemRepository
+                .findAllByTaskId(taskId)
+                .collectList()
+                .flatMap((taskProblems) -> taskProblemRepository.deleteAllByTaskId(taskId).thenReturn(taskProblems))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

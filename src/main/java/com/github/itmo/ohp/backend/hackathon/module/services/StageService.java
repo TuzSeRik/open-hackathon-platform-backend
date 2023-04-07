@@ -40,13 +40,17 @@ public class StageService {
     }
     
     public Mono<StageModel> deleteStage(UUID id) {
-        Mono<StageModel> stage = stageRepository.findById(id);
-        return stageRepository.deleteById(id).then(stage);
+        return stageRepository
+                .findById(id)
+                .flatMap(stage -> stageRepository.deleteById(stage.getId()).thenReturn(stage));
     }
     
     public Flux<StageModel> deleteAllStages() {
-        Flux<StageModel> stages = stageRepository.findAll();
-        return stageRepository.deleteAll().thenMany(stages);
+        return stageRepository
+                .findAll()
+                .collectList()
+                .flatMap((stages) -> stageRepository.deleteAll().thenReturn(stages))
+                .flatMapMany(Flux::fromIterable);
     }
     
 }

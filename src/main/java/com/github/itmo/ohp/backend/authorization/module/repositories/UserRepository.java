@@ -11,6 +11,6 @@ import java.util.UUID;
 public interface UserRepository extends ReactiveCrudRepository<UserModel, UUID> {
     Mono<UserModel> findByUsername(String username);
     Flux<UserModel> findAllByTeamId(UUID teamId);
-    Flux<Void> deleteAllByTeamId(UUID teamId);
+    Mono<Void> deleteAllByTeamId(UUID teamId);
     
 }
