@@ -52,6 +52,7 @@ public class UserService {
                     changingUser.setPassword(user.getPassword());
                     changingUser.setAuthorities(user.getAuthorities());
                     changingUser.setTeamId(user.getTeamId());
+                    changingUser.encodePassword();
                     return userRepository.save(changingUser);
                 })
         .switchIfEmpty(Mono.empty());
